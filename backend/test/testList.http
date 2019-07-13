@@ -1,0 +1,87 @@
+###
+
+POST http://api.thaistringers.com/api/execute
+content-type: application/json
+application: Thai Stringers
+module: News
+objectfile: ../../biz/NewsCategoryBiz
+objectname: NewsCategoryBiz
+objectmethod: Add
+
+{ 
+  "data": {
+    "code": "doc3",
+    "firstName": "Roberto",
+    "lastName": "Fermino"
+  }
+}
+
+
+###
+{
+  "data": {
+    "id": 1,
+    "firstName": "Mohamed",
+    "lastName": "Salah"
+  },
+  "subDoc": "newsCategory_1"
+}
+
+###
+
+POST http://api.thaistringers.com/api/execute
+content-type: application/json
+application: Thai Stringers
+module: News
+objectfile: ../../biz/NewsCategoryBiz
+objectname: NewsCategoryBiz
+objectmethod: Count
+
+{
+}
+
+###
+
+POST http://localhost:3001/api/execute
+content-type: application/json
+application: Thai Stringers
+module: News
+objectfile: ../../biz/NewsCategoryBiz
+objectname: NewsCategoryBiz
+objectmethod: Edit
+
+{
+  "condition": ["id", "==", 3],
+  "data": {
+      "id":99,
+      "name": "AAA"
+    }
+}
+
+
+###
+
+POST http://localhost:3001/api/execute
+content-type: application/json
+application: Thai Stringers
+module: News
+objectfile: ../../biz/NewsCategoryBiz
+objectname: NewsCategoryBiz
+objectmethod: Remove
+
+{
+  "condition": ["code", "=", "werfwe"]
+}
+
+###
+
+POST http://api.thaistringers.com/api/execute
+content-type: application/json
+application: Thai Stringers
+module: News
+objectfile: ../../biz/NewsCategoryBiz
+objectname: NewsCategoryBiz
+objectmethod: Find
+
+{
+}

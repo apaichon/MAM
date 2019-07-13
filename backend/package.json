@@ -1,0 +1,37 @@
+{
+  "name": "thai-stringers-backend",
+  "version": "3.0.0",
+  "description": "Thai Stringers Backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "NodeJS",
+    "Api",
+    "Enterprise"
+  ],
+  "author": "Apaichon Punopas",
+  "license": "MIT",
+  "dependencies": {
+    "Faker": "^0.7.2",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "firebase": "^6.1.0",
+    "firebase-admin": "^8.1.0",
+    "http2": "^3.3.7",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "mongodb": "^3.1.13",
+    "spdy": "^4.0.0",
+    "useragent": "^2.3.0",
+    "uuid": "^3.3.2",
+    "validate.js": "^0.12.0",
+    "winston": "^3.2.1"
+  }
+}

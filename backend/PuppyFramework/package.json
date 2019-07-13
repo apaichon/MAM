@@ -1,0 +1,34 @@
+{
+    "name": "puppyframework",
+    "version": "1.0.0",
+    "description": "Nodejs Api Pattern for Enterprise",
+    "main": "index.js",
+    "scripts": {
+      "dev": "nodemon index.js"
+    },
+    "keywords": [
+      "NodeJS",
+      "Api",
+      "Enterprise"
+    ],
+    "author": "Apaichon Punopas",
+    "license": "MIT",
+    "dependencies": {
+      "Faker": "^0.7.2",
+      "bcrypt": "^3.0.4",
+      "body-parser": "^1.18.3",
+      "chai": "^4.2.0",
+      "chai-http": "^4.2.1",
+      "cors": "^2.8.5",
+      "express": "^4.16.4",
+      "express-session": "^1.15.6",
+      "lodash": "^4.17.11",
+      "moment": "^2.24.0",
+      "mongodb": "^3.1.13",
+      "useragent": "^2.3.0",
+      "uuid": "^3.3.2",
+      "validate.js": "^0.12.0",
+      "winston": "^3.2.1"
+    }
+  }
+  

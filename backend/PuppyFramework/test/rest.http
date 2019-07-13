@@ -1,0 +1,103 @@
+###
+POST http://localhost:3000/membership/member/add
+content-type: application/json
+
+   [ {
+        "firstName": "๋John2",
+        "lastName": "Doe2",
+        "dob": "1990-11-11",
+        "gender": "M"
+    }
+   ]
+
+###
+PUT http://localhost:3000/membership/member/edit
+content-type: application/json
+
+{
+    "data":{
+        "firstName":"Joe",
+        "email":"joe@gmail.com"
+    },
+    "condition":{
+        "firstName":"John"
+    }
+}
+
+###
+DELETE http://localhost:3000/membership/member/delete
+content-type: application/json
+
+{
+    "condition":{
+        "firstName":"Joe"
+    }
+}
+
+###
+GET http://localhost:3000/membership/member/get
+
+###
+POST http://localhost:3000/api/membership/member/add
+content-type: application/json
+application: My Members
+module: membership
+objectname: Member
+objectmethod: Add
+validator: MemberValidator
+
+[
+   {
+       // "firstName": "Apahchon",
+        "lastName": "DoeAXRE",
+        "gender": "dfsf",
+        "registeredDate": "2019-03-09"
+    }
+]  
+
+###
+POST http://localhost:3000/api/security/authentication/login
+content-type: application/json
+application: My Members
+module: security
+objectname: Authentication
+objectmethod: LogIn
+validator: UserValidator
+
+{
+    "username": "apaichon@hotmail.com",
+    "password": "p@ssw0rd"
+}
+
+###
+POST http://localhost:3000/api/security/authentication/login
+content-type: application/json
+application: My Members
+module: security
+objectname: Authentication
+objectmethod: LogOut
+validator: SeesionValidator
+
+{
+    "username": "apaichon@hotmail.com",
+    "sessionID": "WSiMISKlOItC6_k_0y65mP7byQkE4N5r"
+}
+
+
+###
+GET http://localhost:3000/api/membership/member/get
+content-type: application/json
+application: My Members
+module: membership
+objectname: Member
+objectmethod: Find
+validator: MemberValidator
+
+
+
+
+
+  
+  
+
+

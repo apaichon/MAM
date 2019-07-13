@@ -1,5 +1,5 @@
-# thaistringers
-Thaistringers News
+# MAM
+MAM News
 
 ## Installation
 After download

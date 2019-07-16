@@ -17,8 +17,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/apaichon/MAM/blob/feature-nuxt-implement/README_ASSETS/logo.png">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/apaichon/MAM/">
+    <img src="https://github.com/apaichon/MAM/blob/feature-nuxt-implement/README_ASSETS/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">MAM</h3>

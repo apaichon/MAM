@@ -1,7 +1,5 @@
-backend/logs
-backend/api-project-500678905073-bb2d36611601.json
-backend/test-b95b010368fb.json
 
+backend/logs
 # Logs
 logs
 *.log
@@ -84,3 +82,12 @@ typings/
 
 # vscode
 .vscode/
+=======
+# Node modules
+node_modules
+
+# Logs folder
+Logs
+
+# Firebase config
+test-b95b010368fb.json

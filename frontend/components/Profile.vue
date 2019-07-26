@@ -1,15 +1,18 @@
 <template>
   <div class="md-layout md-alignment-center-center profile-container">
-    <div class="md-layout-item md-size-100">
-      <img
-        src="https://image.flaticon.com/icons/svg/236/236832.svg"
-        alt="user-image"
-        width="200"
-        height="200"
-      />
+    <div class="md-layout-item md-size-100" style="display: flex; justify-content: center;">
+      <div class="profile-image-box" @mouseenter="showChangeImage" @mouseleave="hideChangeImage">
+        <div class="profile-image">
+          <span class="change-profile-image">Change</span>
+        </div>
+      </div>
     </div>
-    <div class="md-layout-item md-size-33 font-2x"><i class="fas fa-coins"></i> 9999</div>
-    <div class="md-layout-item md-size-33 font-2x"><i class="fas fa-dollar-sign"></i> 9999</div>
+    <div class="md-layout-item md-size-33 font-2x balance-panel">
+      <i class="fas fa-coins"></i> 9999
+    </div>
+    <div class="md-layout-item md-size-33 font-2x balance-panel">
+      <i class="fas fa-dollar-sign"></i> 9999
+    </div>
     <md-field>
       <label>Email</label>
       <md-input v-model="profile.email" disabled></md-input>
@@ -39,7 +42,16 @@
 <script>
 export default {
   props: ["profile"],
-  mounted() {}
+  methods: {
+    showChangeImage() {
+      const el = document.querySelector(".change-profile-image");
+      el.style.opacity = 1;
+    },
+    hideChangeImage() {
+      const el = document.querySelector(".change-profile-image");
+      el.style.opacity = 0;
+    }
+  }
 };
 </script>
 
@@ -47,10 +59,50 @@ export default {
 <style scoped>
 .profile-container {
   text-align: center;
-  padding: 5px 15px;
+  padding: 10px 20px;
+}
+
+.profile-image-box {
+  position: relative;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.profile-image {
+  height: 200px;
+  width: 200px;
+}
+
+.profile-image::before {
+  content: url(https://image.flaticon.com/icons/svg/236/236832.svg);
+}
+
+.change-profile-image {
+  background: rgba(0, 0, 0, 0.54);
+  bottom: 0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  left: 0;
+  line-height: 12px;
+  position: absolute;
+  padding: 10px 0;
+  text-align: center;
+  width: 200px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
 }
 
 .font-2x {
   font-size: 200%;
+}
+
+.balance-panel {
+  margin: 20px 0;
 }
 </style>

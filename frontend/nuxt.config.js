@@ -44,5 +44,8 @@ export default {
     */
     extend(config, ctx) {
     }
+  },
+  env: {
+    baseUrl: 'https://localhost:3001/api/execute'
   }
 }

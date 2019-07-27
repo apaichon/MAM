@@ -32,7 +32,32 @@ export default {
     Profile
   },
   methods: {
-    find() {}
+    async updateProfile() {
+      const reqBody = {
+        condition: ["id", "==", this.profile.id],
+        data: {
+          firstName: document.querySelector("#firstName").value,
+          lastName: document.querySelector("#lastName").value,
+          mobileNo: document.querySelector("#mobileNo").value
+        }
+      };
+
+      await axios({
+        method: "post",
+        url: process.env.baseUrl,
+        headers: {
+          "Content-Type": "application/json",
+          application: "Thai Stringers",
+          objectfile: "../../biz/AccountProfileBiz",
+          objectname: "AccountProfileBiz",
+          objectmethod: "Edit"
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        }),
+        data: reqBody
+      });
+    }
   }
   // async asyncData({ params }) {
   //   let { data } = await axios({

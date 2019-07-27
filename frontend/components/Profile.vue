@@ -15,31 +15,34 @@
     </div>
     <md-field>
       <label>Email</label>
-      <md-input v-model="profile.email" disabled></md-input>
+      <md-input id="email" v-model="profile.email" disabled></md-input>
       <span class="md-helper-text"></span>
     </md-field>
     <md-field>
       <label>First Name</label>
-      <md-input v-model="profile.firstName"></md-input>
+      <md-input id="firstName" v-model="profile.firstName"></md-input>
       <span class="md-helper-text"></span>
     </md-field>
     <md-field>
       <label>Last Name</label>
-      <md-input v-model="profile.lastName"></md-input>
+      <md-input id="lastName" v-model="profile.lastName"></md-input>
       <span class="md-helper-text"></span>
     </md-field>
     <md-field>
       <label>Mobile No.</label>
-      <md-input v-model="profile.mobileNo"></md-input>
+      <md-input id="mobileNo" v-model="profile.mobileNo"></md-input>
       <span class="md-helper-text"></span>
     </md-field>
     <div class="md-layout-item md-size-100">
-      <md-button class="md-raised md-primary">Update</md-button>
+      <md-button class="md-raised md-primary" @click="updateProfile">Update</md-button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import https from "https";
+
 export default {
   props: ["profile"],
   methods: {
@@ -50,6 +53,37 @@ export default {
     hideChangeImage() {
       const el = document.querySelector(".change-profile-image");
       el.style.opacity = 0;
+    },
+    updateProfile() {
+      const reqBody = {
+        condition: ["id", "==", this.profile.id],
+        data: {
+          firstName: document.querySelector("#firstName").value,
+          lastName: document.querySelector("#lastName").value,
+          mobileNo: document.querySelector("#mobileNo").value
+        }
+      };
+
+      axios({
+        method: "post",
+        url: process.env.baseUrl,
+        headers: {
+          "Content-Type": "application/json",
+          application: "Thai Stringers",
+          objectfile: "../../biz/AccountProfileBiz",
+          objectname: "AccountProfileBiz",
+          objectmethod: "Edit"
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        }),
+        data: reqBody
+      }).then(({ data }) => {
+        if (data.code === 200)
+          alert('อัพเดทสำเร็จ');
+        else
+          alert('อัพเดทไม่สำเร็จ');
+      });
     }
   }
 };
@@ -60,6 +94,7 @@ export default {
 .profile-container {
   text-align: center;
   padding: 10px 20px;
+  max-width: 500px;
 }
 
 .profile-image-box {
@@ -75,10 +110,7 @@ export default {
 .profile-image {
   height: 200px;
   width: 200px;
-}
-
-.profile-image::before {
-  content: url(https://image.flaticon.com/icons/svg/236/236832.svg);
+  background-image: url(https://image.flaticon.com/icons/svg/236/236832.svg);
 }
 
 .change-profile-image {

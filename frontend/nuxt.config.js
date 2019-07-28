@@ -48,6 +48,6 @@ export default {
     }
   },
   env: {
-    baseUrl: 'https://localhost:3001/api/execute'
+    baseUrl: 'http://localhost:3001/api/execute'
   }
 }

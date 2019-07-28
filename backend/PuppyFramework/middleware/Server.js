@@ -6,7 +6,7 @@ const spdy = require('spdy');
 
 class Server {
 
-    constructor (port = 3000) {
+    constructor(port = 3000) {
         this.PORT = port;
         const express = require('express');
         this.bodyParser = require('body-parser');
@@ -16,23 +16,34 @@ class Server {
         this.app.use(this.bodyParser.urlencoded({ extended: false }));
         this.app.use(cors(customCors));
         this.app.use(Session);
-        spdy
-            .createServer(Secure, this.app)
-            .listen(port, (error) => {
+        if (require('../../config').serverProtocol === 'https') {
+            spdy
+                .createServer(Secure, this.app)
+                .listen(port, (error) => {
+                    if (error) {
+                        console.error(error)
+                        return process.exit(1)
+                    } else {
+                        console.log('Listening on port: ' + port + '.')
+                    }
+                })
+        } else {
+            this.app.listen(port, (error) => {
                 if (error) {
-                console.error(error)
-                return process.exit(1)
+                    console.error(error)
+                    return process.exit(1)
                 } else {
-                console.log('Listening on port: ' + port + '.')
+                    console.log('Listening on port: ' + port + '.')
                 }
-            })
+            });
+        }
     }
 
-    Use (object) {
+    Use(object) {
         this.app.use(object);
     }
 
-    All (url, method) {
+    All(url, method) {
         this.app.all(url, method);
     }
 }

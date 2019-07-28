@@ -3,5 +3,6 @@ let { MemberUrl } = require('./RouterUrl');
 
 module.exports = {
     DbServer,
-    MemberUrl
+    MemberUrl,
+    serverProtocol: 'http'
 }

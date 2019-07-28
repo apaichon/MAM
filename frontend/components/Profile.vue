@@ -1,41 +1,57 @@
 <template>
-  <div class="md-layout md-alignment-center-center profile-container">
-    <div class="md-layout-item md-size-100" style="display: flex; justify-content: center;">
-      <div class="profile-image-box" @mouseenter="showChangeImage" @mouseleave="hideChangeImage">
-        <div class="profile-image">
-          <span class="change-profile-image">Change</span>
+  <div class="profile-container">
+    <md-card style="width: 100%">
+      <md-card-header>
+        <div class="md-title">Edit Profile</div>
+      </md-card-header>
+
+      <md-card-content>
+        <div style="display: flex; justify-content: center; margin: 10px 0;">
+          <div
+            class="profile-image-box"
+            @mouseenter="showChangeImage"
+            @mouseleave="hideChangeImage"
+          >
+            <div class="profile-image">
+              <span class="change-profile-image">Change</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="md-layout-item md-size-33 font-2x balance-panel">
-      <i class="fas fa-coins"></i> 9999
-    </div>
-    <div class="md-layout-item md-size-33 font-2x balance-panel">
-      <i class="fas fa-dollar-sign"></i> 9999
-    </div>
-    <md-field>
-      <label>Email</label>
-      <md-input id="email" v-model="profile.email" disabled></md-input>
-      <span class="md-helper-text"></span>
-    </md-field>
-    <md-field>
-      <label>First Name</label>
-      <md-input id="firstName" v-model="profile.firstName"></md-input>
-      <span class="md-helper-text"></span>
-    </md-field>
-    <md-field>
-      <label>Last Name</label>
-      <md-input id="lastName" v-model="profile.lastName"></md-input>
-      <span class="md-helper-text"></span>
-    </md-field>
-    <md-field>
-      <label>Mobile No.</label>
-      <md-input id="mobileNo" v-model="profile.mobileNo"></md-input>
-      <span class="md-helper-text"></span>
-    </md-field>
-    <div class="md-layout-item md-size-100">
-      <md-button class="md-raised md-primary" @click="updateProfile">Update</md-button>
-    </div>
+        <div style="display: flex; text-align: center">
+          <div class="font-2x balance-panel" style="width: 50%">
+            <i class="fas fa-coins"></i> 0.00
+          </div>
+          <div class="font-2x balance-panel" style="width: 50%">
+            <i class="fas fa-dollar-sign"></i> 0.00
+          </div>
+        </div>
+        <md-field>
+          <label>Email</label>
+          <md-input id="email" v-model="profile.email" disabled></md-input>
+          <span class="md-helper-text"></span>
+        </md-field>
+        <md-field>
+          <label>First Name</label>
+          <md-input id="firstName" v-model="profile.firstName"></md-input>
+          <span class="md-helper-text"></span>
+        </md-field>
+        <md-field>
+          <label>Last Name</label>
+          <md-input id="lastName" v-model="profile.lastName"></md-input>
+          <span class="md-helper-text"></span>
+        </md-field>
+        <md-field>
+          <label>Mobile No.</label>
+          <md-input id="mobileNo" v-model="profile.mobileNo"></md-input>
+          <span class="md-helper-text"></span>
+        </md-field>
+        <div class="md-layout-item md-size-100"></div>
+      </md-card-content>
+
+      <md-card-actions>
+        <md-button class="md-primary" @click="updateProfile">Update</md-button>
+      </md-card-actions>
+    </md-card>
   </div>
 </template>
 
@@ -79,10 +95,8 @@ export default {
         }),
         data: reqBody
       }).then(({ data }) => {
-        if (data.code === 200)
-          alert('อัพเดทสำเร็จ');
-        else
-          alert('อัพเดทไม่สำเร็จ');
+        if (data.code === 200) alert("อัพเดทสำเร็จ");
+        else alert("อัพเดทไม่สำเร็จ");
       });
     }
   }
@@ -92,8 +106,6 @@ export default {
 
 <style scoped>
 .profile-container {
-  text-align: center;
-  padding: 10px 20px;
   max-width: 500px;
 }
 

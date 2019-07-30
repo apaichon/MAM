@@ -20,7 +20,7 @@ let filterOnly = (db, collection, wheres, pageSize) => {
         reject('Data is not found!')
       }
     })
-   
+
   })
 }
 
@@ -40,7 +40,7 @@ let filterOrderBy = (db, collection, wheres, pageSize, orderBy) => {
         } else {
           reject('Data is not found!')
         }
-        
+
       })
   })
 }
@@ -105,7 +105,7 @@ let insertData = (db, collection, model) => {
     dbRef = db.collection(collection).doc(data.id)
   }
   return dbRef.set(data)
-  
+
 }
 
 
@@ -128,7 +128,7 @@ class Firestore {
       });
     }
     this.db = admin.firestore();
-    
+
   }
 
   /** Methods */
@@ -177,14 +177,14 @@ class Firestore {
           Promise.resolve(data)
            // Promise.resolve(this.AddTotalItems())
          })
-          
+
         })
         .then(result => resolve(result))
         .catch(err => reject(err))
       } else {
         docRef = this.db.collection(this.Collection);
         this.db.runTransaction(t => {
-          
+
           return this.GenAutoNumber()
           .then(number => {
             console.log('autoid', number)
@@ -199,13 +199,13 @@ class Firestore {
               //Promise.resolve(this.AddTotalItems())
             })
           })
-        }).then(result => { 
+        }).then(result => {
           console.log('insert result', result)
           resolve(result)
         })
         .catch(err => reject(err));
       }
-      
+
     })
   }*/
 
@@ -222,7 +222,7 @@ class Firestore {
         .then(result => resolve(result))
         .catch(err => reject(err))
       })
-    }) 
+    })
   }
 
   GenAutoNumber() {
@@ -247,7 +247,7 @@ class Firestore {
 
   /**
    * Update data
-   * @param {*} dataWithCondition 
+   * @param {*} dataWithCondition
    */
   Update (dataWithCondition) {
     let { data, condition } = dataWithCondition
@@ -261,7 +261,7 @@ class Firestore {
           doc.forEach((a) => {
             transaction.update(a.ref, data)
           })
-          
+
           return data
         })
       }).then((result) => resolve(result))
@@ -306,7 +306,7 @@ class Firestore {
 
   /**
    * Remove data
-   * @param {*} conditionWithOption 
+   * @param {*} conditionWithOption
    */
   Remove (conditionWithOption) {
     let {condition, batchSize} = conditionWithOption
@@ -339,7 +339,7 @@ class Firestore {
       filter = ['id', '>', 0]
     }
     let [a, b, c] = filter
-   
+
     return new Promise((resolve, reject) => {
       let query = this.db.collection(this.Collection).where(a, b, c)
       query.get().then(result => {

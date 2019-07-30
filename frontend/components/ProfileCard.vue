@@ -51,6 +51,12 @@
       <md-card-actions>
         <md-button class="md-primary" @click="updateProfile">Update</md-button>
       </md-card-actions>
+
+      <div class="card-loader">
+        <div>
+          <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+        </div>
+      </div>
     </md-card>
   </div>
 </template>
@@ -60,7 +66,16 @@ import axios from "axios";
 import https from "https";
 
 export default {
-  props: ["profile"],
+  props: ["email"],
+  data() {
+    return { profile: {} };
+  },
+  created() {
+    this.getProfile();
+  },
+  mounted() {
+    this.cardLoaded();
+  },
   methods: {
     showChangeImage() {
       const el = document.querySelector(".change-profile-image");
@@ -70,7 +85,32 @@ export default {
       const el = document.querySelector(".change-profile-image");
       el.style.opacity = 0;
     },
+    getProfile() {
+      axios({
+        method: "post",
+        url: process.env.baseUrl,
+        headers: {
+          "Content-Type": "application/json",
+          application: "Thai Stringers",
+          objectfile: "../../biz/AccountProfileBiz",
+          objectname: "AccountProfileBiz",
+          objectmethod: "FindOne"
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        }),
+        data: {
+          condition: {
+            filter: ["email", "==", this.email]
+          }
+        }
+      }).then(({ data }) => {
+        this.profile = data.data[0];
+      });
+    },
     updateProfile() {
+      this.cardLoading();
+
       const reqBody = {
         condition: ["id", "==", this.profile.id],
         data: {
@@ -97,7 +137,18 @@ export default {
       }).then(({ data }) => {
         if (data.code === 200) alert("อัพเดทสำเร็จ");
         else alert("อัพเดทไม่สำเร็จ");
+        this.cardLoaded();
       });
+    },
+    cardLoading() {
+      const loader = document.querySelector(".card-loader");
+      loader.style.opacity = 1;
+      loader.style.visibility = "visible";
+    },
+    cardLoaded() {
+      const loader = document.querySelector(".card-loader");
+      loader.style.opacity = 0;
+      loader.style.visibility = "hidden";
     }
   }
 };
@@ -148,5 +199,21 @@ export default {
 
 .balance-panel {
   margin: 20px 0;
+}
+
+.card-loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 6;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s, visibility 0.4s;
 }
 </style>

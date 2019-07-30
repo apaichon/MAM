@@ -1,76 +1,22 @@
 <template>
   <div class="container">
-    <Profile v-bind:profile="profile[0]" />
+    <ProfileCard v-bind:email="email" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import https from "https";
-import Profile from "~/components/Profile.vue";
+import ProfileCard from "~/components/ProfileCard.vue";
 
 export default {
-  async asyncData({ params }) {
-    let response = await axios({
-      method: "post",
-      url: process.env.baseUrl,
-      headers: {
-        "Content-Type": "application/json",
-        application: "Thai Stringers",
-        objectfile: "../../biz/AccountProfileBiz",
-        objectname: "AccountProfileBiz",
-        objectmethod: "Find"
-      },
-      httpsAgent: new https.Agent({
-        rejectUnauthorized: false
-      })
-    });
-
-    return { profile: response.data.data };
+  async asyncData() {
+    return {
+      email: "johndoe@gmail.com"
+    };
   },
   components: {
-    Profile
-  },
-  methods: {
-    async updateProfile() {
-      const reqBody = {
-        condition: ["id", "==", this.profile.id],
-        data: {
-          firstName: document.querySelector("#firstName").value,
-          lastName: document.querySelector("#lastName").value,
-          mobileNo: document.querySelector("#mobileNo").value
-        }
-      };
-
-      await axios({
-        method: "post",
-        url: process.env.baseUrl,
-        headers: {
-          "Content-Type": "application/json",
-          application: "Thai Stringers",
-          objectfile: "../../biz/AccountProfileBiz",
-          objectname: "AccountProfileBiz",
-          objectmethod: "Edit"
-        },
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        }),
-        data: reqBody
-      });
-    }
+    ProfileCard
   }
-  // async asyncData({ params }) {
-  //   let { data } = await axios({
-  //     method: "get",
-  //     url: "https://reqres.in/api/users/1"
-  //   });
-
-  //   return {
-  //     firstname: data.first_name
-  //   };
-  // }
 };
 </script>
-
-<style scoped>
-</style>

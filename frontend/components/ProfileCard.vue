@@ -11,8 +11,9 @@
             class="profile-image-box"
             @mouseenter="showChangeImage"
             @mouseleave="hideChangeImage"
+            @click="changeProfileImage"
           >
-            <div class="profile-image">
+            <div id="profile-image">
               <span class="change-profile-image">Change</span>
             </div>
           </div>
@@ -73,9 +74,7 @@ export default {
   created() {
     this.getProfile();
   },
-  mounted() {
-    this.cardLoaded();
-  },
+  mounted() {},
   methods: {
     showChangeImage() {
       const el = document.querySelector(".change-profile-image");
@@ -105,7 +104,11 @@ export default {
           }
         }
       }).then(({ data }) => {
-        this.profile = data.data[0];
+        this.profile = data.data.shift();
+        document.querySelector(
+          "#profile-image"
+        ).style.backgroundImage = `url(${this.profile.photo})`;
+        this.cardLoaded();
       });
     },
     updateProfile() {
@@ -140,6 +143,9 @@ export default {
         this.cardLoaded();
       });
     },
+    changeProfileImage() {
+      alert("Not implemented!");
+    },
     cardLoading() {
       const loader = document.querySelector(".card-loader");
       loader.style.opacity = 1;
@@ -170,10 +176,9 @@ export default {
   cursor: pointer;
 }
 
-.profile-image {
+#profile-image {
   height: 200px;
   width: 200px;
-  background-image: url(https://image.flaticon.com/icons/svg/236/236832.svg);
 }
 
 .change-profile-image {

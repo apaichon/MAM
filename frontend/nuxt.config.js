@@ -36,18 +36,8 @@ export default {
   ** Router
   */
   router: [
-    { 
-      path: '/', 
-      component: import('layouts/DashboardLayout.vue'),
-      redirect: '/dashboard',
-      children: [
-        {
-          path: "dashboard",
-          name: "Dashboard",
-          component: import('pages/Dashboard.vue')
-        },
-      ]
-    },
+    { path: '/', component: import('~/pages/index.vue')}, 
+    { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
   ],
   /*
   ** Nuxt.js modules

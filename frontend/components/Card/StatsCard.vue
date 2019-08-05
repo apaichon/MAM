@@ -15,7 +15,6 @@
 </template>
 <script>
 export default {
-  name: "stats-card",
   props: {
     dataBackgroundColor: {
       type: String,

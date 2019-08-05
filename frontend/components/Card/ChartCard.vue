@@ -18,7 +18,6 @@
 </template>
 <script>
 export default {
-  name: "chart-card",
   props: {
     footerText: {
       type: String,

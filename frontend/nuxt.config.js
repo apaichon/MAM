@@ -32,6 +32,23 @@ export default {
   plugins: [
     '~/plugins/vue-material'
   ],
+  /* 
+  ** Router
+  */
+  router: [
+    { 
+      path: '/', 
+      component: import('layouts/DashboardLayout.vue'),
+      redirect: '/dashboard',
+      children: [
+        {
+          path: "dashboard",
+          name: "Dashboard",
+          component: import('pages/Dashboard.vue')
+        },
+      ]
+    },
+  ],
   /*
   ** Nuxt.js modules
   */

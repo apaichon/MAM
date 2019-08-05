@@ -5,6 +5,7 @@
       <h1 class="title" style="line-height: 100px;">
         frontend
       </h1>
+      <md-button class="md-raised md-primary">Primary</md-button>
       <h2 class="subtitle" style="line-height: 50px;">
         MAM Project
       </h2>

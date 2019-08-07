@@ -37,8 +37,58 @@ export default {
   ** Router
   */
   router: [
-    { path: '/', component: import('~/pages/index.vue')}, 
-    { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
+    // { path: '/', component: import('~/pages/index.vue')}, 
+    // { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
+    {
+      path: "/",
+      component: import('~/pages/index.vue'),
+      redirect: "/dashboard",
+      children: [
+        {
+          path: "dashboard",
+          name: "Dashboard",
+          component: import('~/pages/Dashboard.vue')
+        },
+        // {
+        //   path: "user",
+        //   name: "User Profile",
+        //   component: UserProfile
+        // },
+        // {
+        //   path: "table",
+        //   name: "Table List",
+        //   component: TableList
+        // },
+        // {
+        //   path: "typography",
+        //   name: "Typography",
+        //   component: Typography
+        // },
+        // {
+        //   path: "icons",
+        //   name: "Icons",
+        //   component: Icons
+        // },
+        // {
+        //   path: "maps",
+        //   name: "Maps",
+        //   meta: {
+        //     hideFooter: true
+        //   },
+        //   component: Maps
+        // },
+        // {
+        //   path: "notifications",
+        //   name: "Notifications",
+        //   component: Notifications
+        // },
+        // {
+        //   path: "upgrade",
+        //   name: "Upgrade to PRO",
+        //   component: UpgradeToPRO
+        // }
+      ]
+    }
   ],
   /*
   ** Nuxt.js modules

@@ -54,11 +54,11 @@ export default {
         //   name: "User Profile",
         //   component: UserProfile
         // },
-        // {
-        //   path: "table",
-        //   name: "Table List",
-        //   component: TableList
-        // },
+        {
+          path: "table",
+          name: "Table List",
+          component: import('../pages/TableList.vue')
+        },
         // {
         //   path: "typography",
         //   name: "Typography",

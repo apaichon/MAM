@@ -37,8 +37,9 @@ export default {
   ** Router
   */
   router: [
-    { path: '/', component: import('~/pages/index.vue')}, 
-    { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
+    { path: '/', component: 'pages/index.vue'}, 
+    { path: '/dashboard', component: 'pages/Dashboard.vue'},
+    { path: '/addnews', component: 'pages/Addnews.vue'},
   ],
   /*
   ** Nuxt.js modules

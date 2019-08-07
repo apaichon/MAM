@@ -41,8 +41,7 @@
     <div class="main-panel">
       <top-navbar></top-navbar>
       <nuxt />
-
-      <!-- <content-footer v-if="!$route.meta.hideFooter"></content-footer> -->
+      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
   </div>
 </template>

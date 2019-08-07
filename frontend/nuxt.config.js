@@ -41,13 +41,13 @@ export default {
     // { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
     {
       path: "/",
-      component: import('~/pages/index.vue'),
+      component: import('../pages/index.vue'),
       redirect: "/dashboard",
       children: [
         {
           path: "dashboard",
           name: "Dashboard",
-          component: import('~/pages/Dashboard.vue')
+          component: import('../pages/Dashboard.vue')
         },
         // {
         //   path: "user",

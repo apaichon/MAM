@@ -7,23 +7,35 @@
             <span class="md-title">กล่องข้อความ</span>
           </md-app-toolbar>
           <md-app-drawer :md-active.sync="menuVisible">
-            <md-toolbar class="md-transparent" md-elevation="0">ข้อความ
+            <md-toolbar class="md-primary" md-elevation="0">
+              <div class="md-toolbar-section-start">
+                  ข้อความ
+              </div>
+            <div class="md-toolbar-section-end">
+              <md-button  class="md-icon-button">
+                    <md-icon>delete</md-icon>
+              </md-button>
+              <md-button @click="menuVisible = false"  class="md-icon-button">
+                <md-icon>close</md-icon>
+              </md-button>
+            </div>
             </md-toolbar>
           <md-app-content>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo, neque.</p>
+            <p>{{ fullMessage }}</p>
           </md-app-content>
           </md-app-drawer>
           <md-app-content>
-            <md-table>
-              <md-table-row>
-                <md-table-head>ชื่อผู้ส่ง</md-table-head>
-                <md-table-head>ข้อความ</md-table-head>
-              </md-table-row>
-              <md-table-row @click="openMessage()" v-for="(user, index) in message" :key="index">
-                <md-table-cell class="message-text-size message-text-size-sender">{{ user.name }}</md-table-cell>
-                <md-table-cell class="message-text-size text-left">{{ user.message }}</md-table-cell>
-              </md-table-row>
+              <md-table v-if="message" v-model="message" >
+                <md-table-row @click="openMessage(item.message)" slot="md-table-row" slot-scope="{item}" >
+                  <md-table-cell md-label="ชื่อผู้ส่ง"><md-badge class="md-square" md-content="New" />{{ item.name.substr(0,20) }}</md-table-cell>
+                  <md-table-cell md-label="เรื่อง">{{ item.message.substr(0,20) }}</md-table-cell>
+                  <md-table-cell md-label="ข้อความ">{{ item.message.substr(0,50) }}</md-table-cell>
+                  <md-table-cell md-label="เวลา">20/06/2019 23:56</md-table-cell>
+                </md-table-row>
               </md-table>
+              <div v-if="!message" class="loading">
+                <md-progress-spinner :md-diameter="100" :md-stroke="10" md-mode="indeterminate"></md-progress-spinner>
+              </div>
           </md-app-content>
         </md-app>
       </md-card-content>
@@ -37,26 +49,40 @@ export default {
   data() {
     return {
       menuVisible: false,
+      fullMessage: '',
     }
   },
   methods: {
-    openMessage() {
+    openMessage(message) {
       this.menuVisible = true
+      this.fullMessage = message
     }
   },
   computed: {
     ...mapState(['message'])
   },
   mounted() {
+    this.$store.dispatch('loadMessage')
   },
 };
 </script>
 
 <style>
-  .close-button {
-    position: absolute;
-    right: 10px;
+  .close-icon {
+    position:absolute;
+    right:20px;
     cursor: pointer;
+  }
+  .delete-icon {
+    position:absolute;
+    right:80px;
+    cursor: pointer;
+
+  }
+  .loading {
+    text-align:center;
+    position:relative;
+    top: 200px
   }
   .md-app {
     max-height: 600px;
@@ -79,6 +105,10 @@ export default {
     cursor: pointer;
   }
   .message-text-size-sender {
+    width: 30%;
+    cursor: pointer;
+  }
+  .message-text-size-subject {
     width: 30%;
     cursor: pointer;
   }

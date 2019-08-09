@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container">
-    <md-card style="width: 100%">
+    <md-card style="width: 500px;">
       <md-card-header>
         <div class="md-title">Edit Profile</div>
       </md-card-header>
@@ -163,7 +163,8 @@ export default {
 
 <style scoped>
 .profile-container {
-  max-width: 500px;
+  display: flex;
+  justify-content: center;
 }
 
 .profile-image-box {
@@ -215,7 +216,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 1);
   z-index: 6;
   opacity: 1;
   visibility: visible;

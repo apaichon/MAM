@@ -25,6 +25,11 @@
           </md-app-content>
           </md-app-drawer>
           <md-app-content>
+             <md-empty-state v-if="inboxIsEmpty"
+              md-icon="mail_outline"
+              md-label="ไม่มีข้อความในระบบ"
+              md-description="คุณจะสามารถเห็นข้อความในกล่องนี้ได้ เมื่อมีข้อความใหม่เข้ามา">
+            </md-empty-state>
               <md-table v-if="message" v-model="message" >
                 <md-table-row @click="openMessage(item.message)" slot="md-table-row" slot-scope="{item}" >
                   <md-table-cell md-label="ชื่อผู้ส่ง"><md-badge class="md-square" md-content="New" />{{ item.name.substr(0,20) }}</md-table-cell>
@@ -59,7 +64,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['message'])
+    ...mapState(['message']),
+    inboxIsEmpty() {
+      let isEmpty
+      if (this.message) {
+        isEmpty = this.message.length === 0 ? true : false
+      }
+      return isEmpty
+    }
   },
   mounted() {
     this.$store.dispatch('loadMessage')

@@ -1,19 +1,26 @@
 import axios from 'axios'
 
 export default {
-  getMessage(uid) {
-    return new Promise((resolve, reject) => {
-      axios({
+ async getMessage(id) {
+   const res = await axios({
         method: "GET",
-        url: 'http://localhost:3030/messages/gJOCBRsRDOPWgj4ojEJGTdtyYZJ3',
+        url: `http://localhost:3030/messages/${id}`,
         headers: {
           "Content-Type": "application/json"
         }
-      }).then((data) => {
-        resolve(data.data)
-      }).catch(e => {
-        reject(e)
       })
-    })
-  }
+  return res.data
+  },
+
+async updateStatus(data) {
+  const res = await axios({
+    method: "PUT",
+    url: `http://localhost:3030/messages`,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    data: data
+  })
+  return res.data
+}
 }

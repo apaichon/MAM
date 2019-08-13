@@ -31,8 +31,8 @@
               md-description="คุณจะสามารถเห็นข้อความในกล่องนี้ได้ เมื่อมีข้อความใหม่เข้ามา">
             </md-empty-state>
               <md-table v-if="message" v-model="message" >
-                <md-table-row @click="openMessage(item.message)" slot="md-table-row" slot-scope="{item}" >
-                  <md-table-cell md-label="ผู้ส่ง"><md-badge class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
+                <md-table-row @click="openMessage(item.message, 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3', item.id, item.isRead)" slot="md-table-row" slot-scope="{item}" >
+                  <md-table-cell md-label="ผู้ส่ง"><md-badge v-if="!item.isRead" class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
                   <md-table-cell md-label="เรื่อง">{{ subText(item.subject) }}</md-table-cell>
                   <md-table-cell md-label="ข้อความ">{{ subText(item.message) }}</md-table-cell>
                   <md-table-cell md-label="เวลา">{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
@@ -58,9 +58,15 @@ export default {
     }
   },
   methods: {
-    openMessage(message) {
+    openMessage(message, userId, messageId, status) {
       this.menuVisible = true
       this.fullMessage = message
+      if (!status) {
+        this.$store.dispatch('updateStatusMessage', {
+          userId,
+          messageId
+        })
+      }
     },
     subText(text) {
       return text.length > 60 ? text.substr(0,60) + '..' : text
@@ -76,8 +82,8 @@ export default {
       return isEmpty
     }
   },
-  mounted() {
-    this.$store.dispatch('loadMessage')
+  created() {
+    this.$store.dispatch('loadMessage', 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3')
   },
 };
 </script>

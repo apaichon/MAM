@@ -16,15 +16,13 @@ const state = () => {
       }
     },
     actions: {
-      loadMessage({ commit }, uid) {
-        return new Promise((resolve, reject) => {
-          messageService.getMessage(uid).then(result => {
-            commit('GET_MESSAGE', result)
-            resolve(this.state.message)
-          }).catch(e => {
-            reject(e)
-          })
-        })
+      async loadMessage({ commit }, id) {
+        const res = await messageService.getMessage(id)
+        commit('GET_MESSAGE', res)
+      },
+      async updateStatusMessage({ commit }, data) {
+        const res = await messageService.updateStatus(data)
+        commit('GET_MESSAGE', res)
       }
     }
   })

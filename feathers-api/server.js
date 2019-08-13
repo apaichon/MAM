@@ -1,9 +1,13 @@
 const feathers = require('@feathersjs/feathers')
 const express = require('@feathersjs/express')
+const cors = require('cors');
+
 import firebase  from './firebase'
 
 const app = express(feathers())
-
+app.use(cors({
+  origin: true
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.configure(express.rest())

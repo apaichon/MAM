@@ -9,6 +9,7 @@ export default {
     return await database
       .collection('Message')
       .doc(id).collection('inbox')
+      .where('status', '==', true)
       .orderBy("createdAt", "desc")
       .get()
   },
@@ -20,6 +21,16 @@ export default {
       .doc(data.messageId)
       .update({
         isRead: true
+      })
+  },
+  async deleteMessage(data) {
+    return await database
+      .collection('Message')
+      .doc(data.userId)
+      .collection('inbox')
+      .doc(data.messageId)
+      .update({
+        status: false
       })
   }
 };

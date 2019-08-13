@@ -13,7 +13,6 @@ app.use(express.urlencoded({ extended: true }))
 app.configure(express.rest())
 app.use(express.errorHandler())
 
-
 class Messages {
   constructor() {
     this.messages = [{
@@ -29,6 +28,15 @@ class Messages {
   }
   async update(id, data, params) {
     await firebase.updateMessage(data)
+    await this.get(data.userId)
+    return this.messages.message
+  }
+  async remove(id, params) {
+    const data = {
+      userId: params.query.userId,
+      messageId: params.query.messageId
+    }
+    await firebase.deleteMessage(data)
     await this.get(data.userId)
     return this.messages.message
   }

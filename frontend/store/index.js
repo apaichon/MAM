@@ -23,6 +23,11 @@ const state = () => {
       async updateStatusMessage({ commit }, data) {
         const res = await messageService.updateStatus(data)
         commit('GET_MESSAGE', res)
+      },
+      async deleteMessage({ commit }, data) {
+        const res = await messageService.deleteMessage(data)
+        commit('GET_MESSAGE', res)
+        return
       }
     }
   })

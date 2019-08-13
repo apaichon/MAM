@@ -12,7 +12,7 @@
                   ข้อความ
               </div>
             <div class="md-toolbar-section-end">
-              <md-button  class="md-icon-button">
+              <md-button @click="deleteMessage"  class="md-icon-button">
                     <md-icon>delete</md-icon>
               </md-button>
               <md-button @click="menuVisible = false"  class="md-icon-button">
@@ -31,7 +31,7 @@
               md-description="คุณจะสามารถเห็นข้อความในกล่องนี้ได้ เมื่อมีข้อความใหม่เข้ามา">
             </md-empty-state>
               <md-table v-if="message" v-model="message" >
-                <md-table-row @click="openMessage(item.message, 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3', item.id, item.isRead)" slot="md-table-row" slot-scope="{item}" >
+                <md-table-row @click="openMessage(item.message, item.id, item.isRead)" slot="md-table-row" slot-scope="{item}" >
                   <md-table-cell md-label="ผู้ส่ง"><md-badge v-if="!item.isRead" class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
                   <md-table-cell md-label="เรื่อง">{{ subText(item.subject) }}</md-table-cell>
                   <md-table-cell md-label="ข้อความ">{{ subText(item.message) }}</md-table-cell>
@@ -55,21 +55,32 @@ export default {
     return {
       menuVisible: false,
       fullMessage: '',
+      messageId: '',
+      userId: 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3'
     }
   },
   methods: {
-    openMessage(message, userId, messageId, status) {
+    openMessage(message, messageId, status) {
       this.menuVisible = true
       this.fullMessage = message
+      this.messageId = messageId
       if (!status) {
         this.$store.dispatch('updateStatusMessage', {
-          userId,
+          userId: this.userId,
           messageId
         })
       }
     },
     subText(text) {
       return text.length > 60 ? text.substr(0,60) + '..' : text
+    },
+    deleteMessage() {
+      this.$store.dispatch('deleteMessage', {
+        userId: this.userId,
+        messageId: this.messageId
+      }).then(() => {
+        this.menuVisible = false
+      })
     }
   },
   computed: {
@@ -82,7 +93,7 @@ export default {
       return isEmpty
     }
   },
-  created() {
+  mounted() {
     this.$store.dispatch('loadMessage', 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3')
   },
 };

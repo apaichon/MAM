@@ -27,6 +27,11 @@ class Messages {
      })
      return this.messages.message
   }
+  async update(id, data, params) {
+    await firebase.updateMessage(data)
+    await this.get(data.userId)
+    return this.messages.message
+  }
 }
 
 app.use('messages', new Messages())

@@ -91,8 +91,8 @@ export default {
         headers: {
           "Content-Type": "application/json",
           application: "Thai Stringers",
-          objectfile: "../../biz/AccountProfileBiz",
-          objectname: "AccountProfileBiz",
+          objectfile: "../../biz/ProfileBiz",
+          objectname: "ProfileBiz",
           objectmethod: "FindOne"
         },
         httpsAgent: new https.Agent({
@@ -129,8 +129,8 @@ export default {
         headers: {
           "Content-Type": "application/json",
           application: "Thai Stringers",
-          objectfile: "../../biz/AccountProfileBiz",
-          objectname: "AccountProfileBiz",
+          objectfile: "../../biz/ProfileBiz",
+          objectname: "ProfileBiz",
           objectmethod: "Edit"
         },
         httpsAgent: new https.Agent({
@@ -180,6 +180,7 @@ export default {
 #profile-image {
   height: 200px;
   width: 200px;
+  background-size: cover;
 }
 
 .change-profile-image {

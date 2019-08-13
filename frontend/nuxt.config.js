@@ -22,16 +22,17 @@ export default {
   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
+  ** Global CSS*/
   css: [
+    '~/assets/meterial-style.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/vue-material',
-    '~/plugins/global-component'
+    '~/plugins/global-component',
+    '~/components/SidebarPlugin/sidebar'
   ],
   /* 
   ** Router
@@ -41,52 +42,19 @@ export default {
     // { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
     {
       path: "/",
-      component: import('../pages/index.vue'),
+      component: 'pages/Dashboard.vue',
       redirect: "/dashboard",
       children: [
         {
           path: "dashboard",
           name: "Dashboard",
-          component: import('../pages/Dashboard.vue')
+          component: 'pages/Dashboard.vue'
         },
-        // {
-        //   path: "user",
-        //   name: "User Profile",
-        //   component: UserProfile
-        // },
         {
-          path: "table",
+          path: "tablelist",
           name: "Table List",
-          component: import('../pages/TableList.vue')
-        },
-        // {
-        //   path: "typography",
-        //   name: "Typography",
-        //   component: Typography
-        // },
-        // {
-        //   path: "icons",
-        //   name: "Icons",
-        //   component: Icons
-        // },
-        // {
-        //   path: "maps",
-        //   name: "Maps",
-        //   meta: {
-        //     hideFooter: true
-        //   },
-        //   component: Maps
-        // },
-        // {
-        //   path: "notifications",
-        //   name: "Notifications",
-        //   component: Notifications
-        // },
-        // {
-        //   path: "upgrade",
-        //   name: "Upgrade to PRO",
-        //   component: UpgradeToPRO
-        // }
+          component: 'pages/Tablelist.vue'
+        }
       ]
     }
   ],

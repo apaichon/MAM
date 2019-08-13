@@ -32,10 +32,10 @@
             </md-empty-state>
               <md-table v-if="message" v-model="message" >
                 <md-table-row @click="openMessage(item.message)" slot="md-table-row" slot-scope="{item}" >
-                  <md-table-cell md-label="ชื่อผู้ส่ง"><md-badge class="md-square" md-content="New" />{{ item.name.substr(0,20) }}</md-table-cell>
-                  <md-table-cell md-label="เรื่อง">{{ item.message.substr(0,20) }}</md-table-cell>
-                  <md-table-cell md-label="ข้อความ">{{ item.message.substr(0,50) }}</md-table-cell>
-                  <md-table-cell md-label="เวลา">20/06/2019 23:56</md-table-cell>
+                  <md-table-cell md-label="ผู้ส่ง"><md-badge class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
+                  <md-table-cell md-label="เรื่อง">{{ subText(item.subject) }}</md-table-cell>
+                  <md-table-cell md-label="ข้อความ">{{ subText(item.message) }}</md-table-cell>
+                  <md-table-cell md-label="เวลา">{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
                 </md-table-row>
               </md-table>
               <div v-if="!message" class="loading">
@@ -61,6 +61,9 @@ export default {
     openMessage(message) {
       this.menuVisible = true
       this.fullMessage = message
+    },
+    subText(text) {
+      return text.length > 60 ? text.substr(0,60) + '..' : text
     }
   },
   computed: {

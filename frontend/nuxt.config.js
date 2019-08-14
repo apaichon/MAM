@@ -32,7 +32,8 @@ export default {
   plugins: [
     '~/plugins/vue-material',
     '~/plugins/global-component',
-    '~/components/SidebarPlugin/sidebar'
+    '~/components/SidebarPlugin/sidebar',
+    '~/plugins/vue-date-fns'
   ],
   /* 
   ** Router

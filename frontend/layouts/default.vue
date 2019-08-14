@@ -1,13 +1,31 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
+    <!-- <notifications></notifications> -->
+
+    <side-bar>
+      <mobile-menu slot="content"></mobile-menu>
+      <sidebar-link to="/dashboard">
+        <md-icon>dashboard</md-icon>
+        <p>Dashboard</p>
+      </sidebar-link>
+      <sidebar-link to="/tablelist">
+        <md-icon>content_paste</md-icon>
+        <p>Table list</p>
+      </sidebar-link>
+    </side-bar>
+
+    <div class="main-panel">
+      <top-navbar></top-navbar>
+      <nuxt />
+      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
+    </div>
   </div>
 </template>
 
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

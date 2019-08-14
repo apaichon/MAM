@@ -90,6 +90,9 @@ export default {
 </script>
 
 <style>
+.nav .md-list-item-container.active  {
+  background-color: #4caf50!important;
+}
 @media screen and (min-width: 991px) {
   .nav-mobile-menu {
     display: none;

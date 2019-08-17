@@ -5,34 +5,36 @@
         <div class="md-title">Change Password</div>
       </md-card-header>
 
-      <md-card-content style="padding-top: 20px;">
-        <md-field>
-          <label>Email</label>
-          <md-input v-model="account.email" disabled></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>Current Password</label>
-          <md-input v-model="currentPassword" ref="currentPassword" type="password"></md-input>
-          <span class="md-helper-text"></span>
-          <span class="md-error"></span>
-        </md-field>
-        <md-field>
-          <label>New Password</label>
-          <md-input v-model="newPassword" type="password"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>Confirm Password</label>
-          <md-input v-model="confirmPassword" type="password"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <div class="md-layout-item md-size-100"></div>
-      </md-card-content>
+      <form @submit="changePassword">
+        <md-card-content style="padding-top: 20px;">
+          <md-field>
+            <label>Email</label>
+            <md-input v-model="account.email" disabled></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>Current Password</label>
+            <md-input v-model="currentPassword" ref="currentPassword" type="password"></md-input>
+            <span class="md-helper-text"></span>
+            <span class="md-error"></span>
+          </md-field>
+          <md-field>
+            <label>New Password</label>
+            <md-input v-model="newPassword" type="password"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>Confirm Password</label>
+            <md-input v-model="confirmPassword" type="password"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <div class="md-layout-item md-size-100"></div>
+        </md-card-content>
 
-      <md-card-actions>
-        <md-button class="md-primary" @click="changePassword">Confirm</md-button>
-      </md-card-actions>
+        <md-card-actions>
+          <md-button class="md-primary" type="submit" value="submit">Confirm</md-button>
+        </md-card-actions>
+      </form>
 
       <div ref="loader" class="change-password-card-loader">
         <div>
@@ -82,9 +84,12 @@ export default {
       }).then(({ data }) => {
         this.account = data.data.shift();
         this.cardLoaded();
+        this.$refs.currentPassword.$el.focus();
       });
     },
-    changePassword() {
+    changePassword(e) {
+      e.preventDefault();
+
       if (!this.currentPassword) {
         alert("Please enter your current password.");
         return;

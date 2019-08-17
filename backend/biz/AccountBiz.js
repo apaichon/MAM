@@ -28,7 +28,7 @@ class AccountBiz extends BusinessObjects.BizBase {
                 const hash = await bcrypt.hash(dataWithCondition.data.newPassword, saltRounds);
                 dataWithCondition.data['password'] = hash;
             } else {
-                throw 'Password is not match!';
+                throw 'Current password is not match!';
             }
         }
         delete dataWithCondition.data.oldPassword;

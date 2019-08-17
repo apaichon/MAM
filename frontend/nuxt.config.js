@@ -38,12 +38,14 @@ export default {
   ** Router
   */
   router: [
-    // { path: '/', component: import('~/pages/index.vue')}, 
-    // { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
+    {
+      path: "/login",
+      component: 'pages/Login.vue',
+    },
     {
       path: "/",
-      component: 'pages/Dashboard.vue',
-      redirect: "/dashboard",
+      component: 'pages/Login.vue',
+      redirect: "/",
       children: [
         {
           path: "dashboard",

@@ -14,7 +14,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' }
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap' }
     ]
   },
   /*
@@ -35,12 +36,12 @@ export default {
     '~/plugins/vue-date-fns',
     '~/components/SidebarPlugin/sidebar'
   ],
-  /* 
+  /*
   ** Router
   */
   router: [
-    // { path: '/', component: import('~/pages/index.vue')}, 
-    // { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
+    // { path: '/', component: import('~/pages/index.vue')},
+    // { path: '/dashboard', component: import('~/pages/Dashboard.vue')},
     {
       path: "/",
       component: 'pages/Dashboard.vue',

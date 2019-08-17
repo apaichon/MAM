@@ -1,7 +1,7 @@
 <template>
   <div class="profile-container">
     <md-card style="width: 500px;">
-      <md-card-header>
+      <md-card-header data-background-color="blue">
         <div class="md-title">Edit Profile</div>
       </md-card-header>
 
@@ -51,7 +51,7 @@
         </md-card-content>
 
         <md-card-actions>
-          <md-button class="md-primary" type="submit" value="submit">Update</md-button>
+          <md-button class="md-info" type="submit" value="submit">Update</md-button>
         </md-card-actions>
       </form>
 
@@ -76,7 +76,13 @@ export default {
   created() {
     this.getProfile();
   },
-  mounted() {},
+  mounted() {
+    this.$notify({
+      message:
+        "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer.",
+      icon: "add_alert"
+    });
+  },
   methods: {
     showChangeImage() {
       const el = document.querySelector(".change-profile-image");

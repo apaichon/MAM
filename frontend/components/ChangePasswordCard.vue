@@ -1,7 +1,7 @@
 <template>
   <div class="change-password-container">
     <md-card style="width: 500px;">
-      <md-card-header>
+      <md-card-header data-background-color="purple">
         <div class="md-title">Change Password</div>
       </md-card-header>
 

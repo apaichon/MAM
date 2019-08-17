@@ -4,8 +4,7 @@
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-50">
         <h2>Thai Stringer</h2>
         <p>The real story from talented people</p>
-
-        <md-card>
+        <md-card id="a">
           <md-card-content>
             <p>ข่าวด่วน Thai Stringer ปรับนโยบายนักข่าวสามารถกำหนดตัวผู้ซื้อได้แล้ว</p>
             <a href="/">อ่านต่อ</a>
@@ -14,18 +13,18 @@
         <a href="/">อ่านข่าวทั้งหมด</a>
       </div>
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-50">
-        <md-card>
+        <md-card class="md-card-stats">
           <md-card-header data-background-color="green">
-            <h4 class="title">Login</h4>
+            <i class="fas fa-user-lock"></i>
           </md-card-header>
           <md-card-content>
             <md-field>
-              <md-icon>email</md-icon>
+              <!-- <md-icon>email</md-icon> -->
               <label>Email address</label>
               <md-input v-model="email" type="email" class="md-success"></md-input>
             </md-field>
-            <md-field>
-              <md-icon>lock</md-icon>
+            <md-field :md-toggle-password="false">
+              <!-- <md-icon>lock</md-icon> -->
               <label>Password</label>
               <md-input v-model="password" type="password" class="md-success"></md-input>
             </md-field>
@@ -46,11 +45,38 @@
   </div>
 </template>
 
-<style scoped>
+<script>
+export default {
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+#login {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .md-layout {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .md-card-stats {
+    .md-card-content {
+      text-align: left;
+      margin-top: 2rem;
+    }
+  }
 }
 .btn-footer {
   display: flex;

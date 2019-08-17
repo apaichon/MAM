@@ -1,11 +1,11 @@
 const { BusinessObjects } = require('../PuppyFramework');
 
-class AccountProfileBiz extends BusinessObjects.BizBase {
+class ProfileBiz extends BusinessObjects.BizBase {
     constructor(config) {
-        config.collectionName = 'accountProfile';
+        config.collectionName = 'profile';
         config.dbName = 'thaistringers';
         super(config);
     }
 }
 
-module.exports = AccountProfileBiz;
+module.exports = ProfileBiz;

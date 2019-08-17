@@ -1,0 +1,150 @@
+<template>
+  <div>
+    <md-card>
+      <md-card-content>
+        <md-app md-mode="reveal" class="message-app">
+          <md-app-toolbar class="md-primary">
+            <span class="md-title">กล่องข้อความ</span>
+          </md-app-toolbar>
+          <md-app-drawer :md-active.sync="menuVisible">
+            <md-toolbar class="md-primary" md-elevation="0">
+              <div class="md-toolbar-section-start">
+                  ข้อความ
+              </div>
+            <div class="md-toolbar-section-end">
+              <md-button @click="deleteMessage"  class="md-icon-button">
+                    <md-icon>delete</md-icon>
+              </md-button>
+              <md-button @click="menuVisible = false"  class="md-icon-button">
+                <md-icon>close</md-icon>
+              </md-button>
+            </div>
+            </md-toolbar>
+          <md-app-content>
+            <p>{{ fullMessage }}</p>
+          </md-app-content>
+          </md-app-drawer>
+          <md-app-content>
+             <md-empty-state v-if="inboxIsEmpty"
+              md-icon="mail_outline"
+              md-label="ไม่มีข้อความในระบบ"
+              md-description="คุณจะสามารถเห็นข้อความในกล่องนี้ได้ เมื่อมีข้อความใหม่เข้ามา">
+            </md-empty-state>
+              <md-table v-if="message" v-model="message" >
+                <md-table-row @click="openMessage(item.message, item.id, item.isRead)" slot="md-table-row" slot-scope="{item}" >
+                  <md-table-cell md-label="ผู้ส่ง"><md-badge v-if="!item.isRead" class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
+                  <md-table-cell md-label="เรื่อง">{{ subText(item.subject) }}</md-table-cell>
+                  <md-table-cell md-label="ข้อความ">{{ subText(item.message) }}</md-table-cell>
+                  <md-table-cell md-label="เวลา">{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
+                </md-table-row>
+              </md-table>
+              <div v-if="!message" class="loading">
+                <md-progress-spinner :md-diameter="100" :md-stroke="10" md-mode="indeterminate"></md-progress-spinner>
+              </div>
+          </md-app-content>
+        </md-app>
+      </md-card-content>
+    </md-card>
+  </div>
+</template>
+<script>
+import axios from 'axios'
+import { mapState } from 'vuex'
+export default {
+  data() {
+    return {
+      menuVisible: false,
+      fullMessage: '',
+      messageId: '',
+      userId: 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3'
+    }
+  },
+  methods: {
+    openMessage(message, messageId, status) {
+      this.menuVisible = true
+      this.fullMessage = message
+      this.messageId = messageId
+      if (!status) {
+        this.$store.dispatch('updateStatusMessage', {
+          userId: this.userId,
+          messageId
+        })
+      }
+    },
+    subText(text) {
+      return text.length > 60 ? text.substr(0,60) + '..' : text
+    },
+    deleteMessage() {
+      this.$store.dispatch('deleteMessage', {
+        userId: this.userId,
+        messageId: this.messageId
+      }).then(() => {
+        this.menuVisible = false
+      })
+    }
+  },
+  computed: {
+    ...mapState(['message']),
+    inboxIsEmpty() {
+      let isEmpty
+      if (this.message) {
+        isEmpty = this.message.length === 0 ? true : false
+      }
+      return isEmpty
+    }
+  },
+  mounted() {
+    this.$store.dispatch('loadMessage', 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3')
+  },
+};
+</script>
+
+<style>
+  .close-icon {
+    position:absolute;
+    right:20px;
+    cursor: pointer;
+  }
+  .delete-icon {
+    position:absolute;
+    right:80px;
+    cursor: pointer;
+
+  }
+  .loading {
+    text-align:center;
+    position:relative;
+    top: 200px
+  }
+  .md-app {
+    max-height: 600px;
+    min-height: 100%;
+    border: 1px solid rgba(#000, .12);
+  }
+ .md-drawer {
+    width: 90%;
+    overflow: hidden;
+    max-width: calc(100vw - 125px);
+  }
+  .message-text-size {
+    width: 100%;
+  }
+  .md-content {
+    border: 0px;
+  }
+  .text-left {
+    text-align: left;
+    cursor: pointer;
+  }
+  .message-text-size-sender {
+    width: 30%;
+    cursor: pointer;
+  }
+  .message-text-size-subject {
+    width: 30%;
+    cursor: pointer;
+  }
+  .message-app {
+    min-height:600px;
+  }
+</style>

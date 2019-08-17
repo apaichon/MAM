@@ -30,14 +30,17 @@
               <md-input v-model="password" type="password" class="md-success"></md-input>
             </md-field>
             <md-checkbox v-model="remember_me">Remember me</md-checkbox>
-            <div>
+            <div class="btn-footer">
               <md-button class="md-raised md-success">Login</md-button>
-              <md-button class="md-primary">Forgot password</md-button>
-              <md-button class="md-dense md-primary">Flat</md-button>
+              <div>
+                <a>Forgot password</a> |
+                <a>Need help</a>
+              </div>
             </div>
           </md-card-content>
         </md-card>
-        <a href="/">Register</a> or <a href="/">Register as company</a>
+        <a href="/">Register</a> or
+        <a href="/">Register as company</a>
       </div>
     </div>
   </div>
@@ -47,5 +50,11 @@
 .md-layout {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.btn-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

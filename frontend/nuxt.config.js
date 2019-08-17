@@ -32,6 +32,7 @@ export default {
   plugins: [
     '~/plugins/vue-material',
     '~/plugins/global-component',
+    '~/plugins/vue-date-fns',
     '~/components/SidebarPlugin/sidebar'
   ],
   /* 

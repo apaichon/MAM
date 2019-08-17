@@ -5,7 +5,7 @@
         <div class="md-title">Edit Profile</div>
       </md-card-header>
 
-      <md-card-content>
+      <md-card-content style="padding-top: 20px;">
         <div style="display: flex; justify-content: center; margin: 10px 0;">
           <div
             class="profile-image-box"
@@ -28,22 +28,22 @@
         </div>
         <md-field>
           <label>Email</label>
-          <md-input id="email" v-model="profile.email" disabled></md-input>
+          <md-input v-model="profile.email" disabled></md-input>
           <span class="md-helper-text"></span>
         </md-field>
         <md-field>
           <label>First Name</label>
-          <md-input id="firstName" v-model="profile.firstName"></md-input>
+          <md-input v-model="profile.firstName"></md-input>
           <span class="md-helper-text"></span>
         </md-field>
         <md-field>
           <label>Last Name</label>
-          <md-input id="lastName" v-model="profile.lastName"></md-input>
+          <md-input v-model="profile.lastName"></md-input>
           <span class="md-helper-text"></span>
         </md-field>
         <md-field>
           <label>Mobile No.</label>
-          <md-input id="mobileNo" v-model="profile.mobileNo"></md-input>
+          <md-input v-model="profile.mobileNo"></md-input>
           <span class="md-helper-text"></span>
         </md-field>
         <div class="md-layout-item md-size-100"></div>
@@ -99,9 +99,7 @@ export default {
           rejectUnauthorized: false
         }),
         data: {
-          condition: {
-            filter: ["email", "==", this.email]
-          }
+          filter: ["email", "==", this.email]
         }
       }).then(({ data }) => {
         this.profile = data.data.shift();
@@ -117,9 +115,9 @@ export default {
       const reqBody = {
         condition: ["id", "==", this.profile.id],
         data: {
-          firstName: document.querySelector("#firstName").value,
-          lastName: document.querySelector("#lastName").value,
-          mobileNo: document.querySelector("#mobileNo").value
+          firstName: this.profile.firstName,
+          lastName: this.profile.lastName,
+          mobileNo: this.profile.mobileNo
         }
       };
 
@@ -165,6 +163,7 @@ export default {
 .profile-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .profile-image-box {

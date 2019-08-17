@@ -76,13 +76,7 @@ export default {
   created() {
     this.getProfile();
   },
-  mounted() {
-    this.$notify({
-      message:
-        "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer.",
-      icon: "add_alert"
-    });
-  },
+  mounted() {},
   methods: {
     showChangeImage() {
       const el = document.querySelector(".change-profile-image");

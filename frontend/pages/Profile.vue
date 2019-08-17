@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="content">
     <ProfileCard v-bind:email="email" />
   </div>
 </template>

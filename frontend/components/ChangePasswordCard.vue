@@ -34,7 +34,7 @@
         <md-button class="md-primary" @click="changePassword">Confirm</md-button>
       </md-card-actions>
 
-      <div class="change-password-card-loader">
+      <div ref="loader" class="change-password-card-loader">
         <div>
           <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
@@ -140,12 +140,12 @@ export default {
       });
     },
     cardLoading() {
-      const loader = document.querySelector(".change-password-card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 1;
       loader.style.visibility = "visible";
     },
     cardLoaded() {
-      const loader = document.querySelector(".change-password-card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
     }

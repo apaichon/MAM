@@ -53,7 +53,7 @@
         <md-button class="md-primary" @click="updateProfile">Update</md-button>
       </md-card-actions>
 
-      <div class="card-loader">
+      <div ref="loader" class="card-loader">
         <div>
           <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
@@ -145,12 +145,12 @@ export default {
       alert("Not implemented!");
     },
     cardLoading() {
-      const loader = document.querySelector(".card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 1;
       loader.style.visibility = "visible";
     },
     cardLoaded() {
-      const loader = document.querySelector(".card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
     }

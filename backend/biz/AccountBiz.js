@@ -36,7 +36,7 @@ class AccountBiz extends BusinessObjects.BizBase {
 
         let result = await this.DataObject['Update'](dataWithCondition);
 
-        await !this.DataObject.Close();
+        await this.DataObject.Close();
         return result;
     }
 }

@@ -2,7 +2,8 @@
   <div class="profile-container">
     <md-card style="width: 500px;">
       <md-card-header data-background-color="blue">
-        <div class="md-title">Edit Profile</div>
+        <h4 class="title">Edit Profile</h4>
+        <p class="category">Complete your profile</p>
       </md-card-header>
 
       <form @submit="updateProfile">
@@ -29,7 +30,7 @@
           </div>
 
           <md-field>
-            <label>Email</label>
+            <label>Email (Readonly)</label>
             <md-input v-model="profile.email" disabled></md-input>
             <span class="md-helper-text"></span>
           </md-field>

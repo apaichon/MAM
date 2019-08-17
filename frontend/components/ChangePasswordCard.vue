@@ -2,13 +2,14 @@
   <div class="change-password-container">
     <md-card style="width: 500px;">
       <md-card-header data-background-color="purple">
-        <div class="md-title">Change Password</div>
+        <h4 class="title">Change Password</h4>
+        <p class="category">It's time to change</p>
       </md-card-header>
 
       <form @submit="changePassword">
         <md-card-content style="padding-top: 20px;">
           <md-field>
-            <label>Email</label>
+            <label>Email (Readonly)</label>
             <md-input v-model="account.email" disabled></md-input>
             <span class="md-helper-text"></span>
           </md-field>

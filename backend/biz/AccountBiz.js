@@ -17,6 +17,21 @@ class AccountBiz extends BusinessObjects.BizBase {
         return result;
     }
 
+    /**
+     * Method to change account password. Hashed with bcrypt.
+     * @param {object} dataWithCondition
+     * {
+     *     "condition": [
+     *         "key",
+     *         "==",
+     *         "value"
+     *     ],
+     *     "data": {
+     *         "oldPassword": "string",
+     *         "newPassword": "string"
+     *     }
+     * }
+     */
     async ChangePassword(dataWithCondition) {
         await this.DataObject.Open();
 

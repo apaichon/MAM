@@ -4,12 +4,11 @@
 
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/dashboard">
+      <sidebar-link to="/newslists">
         <i class="fas fa-newspaper"></i>
         <p>All News</p>
       </sidebar-link>
       <sidebar-link to="/dashboard">
-        <!-- <md-icon>photo_size_select_actual</md-icon> -->
         <i class="fas fa-image"></i>
         <p>All Media</p>
       </sidebar-link>

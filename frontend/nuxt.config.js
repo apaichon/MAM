@@ -45,6 +45,11 @@ export default {
       redirect: "/",
       children: [
         {
+          path: "newslists",
+          name: "News Lists",
+          component: 'pages/NewsLists.vue'
+        },
+        {
           path: "dashboard",
           name: "Dashboard",
           component: 'pages/Dashboard.vue'

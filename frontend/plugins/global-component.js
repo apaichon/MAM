@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import TopNavbar from '../layouts/TopNavbar'
+import MobileNavbar from '../layouts/MobileNavbar'
 import ContentFooter from '../layouts/ContentFooter'
 import Sidebar from '../components/SidebarPlugin/SideBar'
 import SidebarLink from '../components/SidebarPlugin/SidebarLink'
@@ -13,6 +14,7 @@ import SimpleTable from '../components/Tables/OrderedTable'
 Vue.component("side-bar", Sidebar)
 Vue.component("sidebar-link", SidebarLink)
 Vue.component('top-navbar', TopNavbar)
+Vue.component('mobile-menu', MobileNavbar)
 Vue.component('content-footer', ContentFooter)
 Vue.component('chart-card', ChartCard)
 Vue.component('stats-card', StatsCard)

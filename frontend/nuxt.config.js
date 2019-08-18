@@ -40,12 +40,8 @@ export default {
   */
   router: [
     {
-      path: "/login",
-      component: 'pages/Login.vue',
-    },
-    {
       path: "/",
-      component: 'pages/Login.vue',
+      component: 'pages/Dashboard.vue',
       redirect: "/",
       children: [
         {

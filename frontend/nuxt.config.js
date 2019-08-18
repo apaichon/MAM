@@ -24,7 +24,8 @@ export default {
   /*
   ** Global CSS*/
   css: [
-    '~/assets/meterial-style.scss'
+    '~/assets/meterial-style.scss',
+    '~/assets/thaistring-style.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -41,7 +42,7 @@ export default {
   router: [
     {
       path: "/",
-      component: 'pages/Dashboard.vue',
+      component: 'layout/DashboardLayout.vue',
       redirect: "/",
       children: [
         {

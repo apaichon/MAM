@@ -1,0 +1,15 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media screen and (min-width: 992px) {
+  .md-toolbar .md-button:first-child {
+    display: none;
+  }
+}

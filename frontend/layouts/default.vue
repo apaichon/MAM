@@ -1,7 +1,5 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
-    <!-- <notifications></notifications> -->
-
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/newslists">
@@ -16,8 +14,28 @@
 
     <div class="main-panel">
       <top-navbar></top-navbar>
-      <nuxt />
+      <transition name="fade" mode="out-in">
+        <nuxt />
+      </transition>
       <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
   </div>
 </template>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@media screen and (min-width: 992px) {
+  .md-toolbar .md-button:first-child {
+    display: none;
+  }
+}
+</style>

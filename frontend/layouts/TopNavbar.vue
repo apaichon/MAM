@@ -7,7 +7,7 @@
           <div class="md-layout-item md-size-50">
             <md-field>
               <label for="movie">Thumbnail view</label>
-              <md-select v-model="movie" name="movie" id="movie">
+              <md-select name="movie" id="movie">
                 <md-option value="fight-club">View</md-option>
                 <md-option value="godfather">View</md-option>
               </md-select>
@@ -16,7 +16,7 @@
           <div class="md-layout-item md-size-50">
             <md-field>
               <label for="movie">Order by Date</label>
-              <md-select v-model="movie" name="movie" id="movie">
+              <md-select name="movie" id="movie">
                 <md-option value="fight-club">Order by Date</md-option>
                 <md-option value="godfather">Order by Month</md-option>
                 <md-option value="godfather">Order by Year</md-option>

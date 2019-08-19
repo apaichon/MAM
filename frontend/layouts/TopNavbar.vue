@@ -3,6 +3,27 @@
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-start">
         <h3 class="md-title">{{ $route.name }}</h3>
+        <div class="md-layout" id="select-on-topbar">
+          <div class="md-layout-item md-size-50">
+            <md-field>
+              <label for="movie">Thumbnail view</label>
+              <md-select v-model="movie" name="movie" id="movie">
+                <md-option value="fight-club">View</md-option>
+                <md-option value="godfather">View</md-option>
+              </md-select>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-size-50">
+            <md-field>
+              <label for="movie">Order by Date</label>
+              <md-select v-model="movie" name="movie" id="movie">
+                <md-option value="fight-club">Order by Date</md-option>
+                <md-option value="godfather">Order by Month</md-option>
+                <md-option value="godfather">Order by Year</md-option>
+              </md-select>
+            </md-field>
+          </div>
+        </div>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -14,10 +35,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </md-button>
-        <!-- <md-button></md-button> -->
+
         <div class="md-collapse">
           <md-list>
-            <md-list-item href="/History">
+            <md-list-item href="/addnews" id="btn-add-news">
+              <i class="material-icons">add</i>
+              <p>add news</p>
+            </md-list-item>
+            <md-list-item href="/history">
               <i class="material-icons">watch_later</i>
               <p class="hidden-lg hidden-md">History</p>
             </md-list-item>
@@ -76,3 +101,38 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+#select-on-topbar {
+  .md-field:not(.md-disabled):after,
+  div.md-field:not(.md-disabled):after,
+  .md-field:before {
+    background-color: transparent !important;
+  }
+
+  .md-field {
+    label {
+      top: 23px;
+      bottom: 0;
+    }
+  }
+
+  .md-field.md-focused,
+  .md-field.md-has-value {
+    label {
+      top: 0;
+    }
+  }
+}
+
+#btn-add-news {
+  border-radius: 50px;
+
+  .md-list-item-container .md-ripple {
+    i,
+    p {
+      margin: 0;
+    }
+  }
+}
+</style>

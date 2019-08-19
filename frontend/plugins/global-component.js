@@ -10,6 +10,7 @@ import NavTabsCard from '../components/Card/NavTabsCard'
 import NavTabsTable from '../components/Tables/NavTabsTable'
 import OrderedTable from '../components/Tables/OrderedTable'
 import SimpleTable from '../components/Tables/OrderedTable'
+import DropDown from '../components/DropDown'
 
 Vue.component("side-bar", Sidebar)
 Vue.component("sidebar-link", SidebarLink)
@@ -22,3 +23,4 @@ Vue.component('nav-tabs-card', NavTabsCard)
 Vue.component('nav-tabs-table', NavTabsTable)
 Vue.component('ordered-table', OrderedTable)
 Vue.component('simple-table', SimpleTable)
+Vue.component('drop-down', DropDown)

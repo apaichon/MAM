@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container">
-    <md-card style="width: 100%">
+    <md-card style="width: 500px;">
       <md-card-header>
         <div class="md-title">Edit Profile</div>
       </md-card-header>
@@ -11,8 +11,9 @@
             class="profile-image-box"
             @mouseenter="showChangeImage"
             @mouseleave="hideChangeImage"
+            @click="changeProfileImage"
           >
-            <div class="profile-image">
+            <div id="profile-image">
               <span class="change-profile-image">Change</span>
             </div>
           </div>
@@ -73,9 +74,7 @@ export default {
   created() {
     this.getProfile();
   },
-  mounted() {
-    this.cardLoaded();
-  },
+  mounted() {},
   methods: {
     showChangeImage() {
       const el = document.querySelector(".change-profile-image");
@@ -92,8 +91,8 @@ export default {
         headers: {
           "Content-Type": "application/json",
           application: "Thai Stringers",
-          objectfile: "../../biz/AccountProfileBiz",
-          objectname: "AccountProfileBiz",
+          objectfile: "../../biz/ProfileBiz",
+          objectname: "ProfileBiz",
           objectmethod: "FindOne"
         },
         httpsAgent: new https.Agent({
@@ -105,7 +104,11 @@ export default {
           }
         }
       }).then(({ data }) => {
-        this.profile = data.data[0];
+        this.profile = data.data.shift();
+        document.querySelector(
+          "#profile-image"
+        ).style.backgroundImage = `url(${this.profile.photo})`;
+        this.cardLoaded();
       });
     },
     updateProfile() {
@@ -126,8 +129,8 @@ export default {
         headers: {
           "Content-Type": "application/json",
           application: "Thai Stringers",
-          objectfile: "../../biz/AccountProfileBiz",
-          objectname: "AccountProfileBiz",
+          objectfile: "../../biz/ProfileBiz",
+          objectname: "ProfileBiz",
           objectmethod: "Edit"
         },
         httpsAgent: new https.Agent({
@@ -139,6 +142,9 @@ export default {
         else alert("อัพเดทไม่สำเร็จ");
         this.cardLoaded();
       });
+    },
+    changeProfileImage() {
+      alert("Not implemented!");
     },
     cardLoading() {
       const loader = document.querySelector(".card-loader");
@@ -157,7 +163,8 @@ export default {
 
 <style scoped>
 .profile-container {
-  max-width: 500px;
+  display: flex;
+  justify-content: center;
 }
 
 .profile-image-box {
@@ -170,10 +177,10 @@ export default {
   cursor: pointer;
 }
 
-.profile-image {
+#profile-image {
   height: 200px;
   width: 200px;
-  background-image: url(https://image.flaticon.com/icons/svg/236/236832.svg);
+  background-size: cover;
 }
 
 .change-profile-image {
@@ -210,7 +217,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 1);
   z-index: 6;
   opacity: 1;
   visibility: visible;

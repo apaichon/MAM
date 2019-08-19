@@ -13,7 +13,7 @@
       </a>
 
       <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
+        href="/"
         target="_blank"
         class="simple-text logo-normal"
       >
@@ -37,25 +37,21 @@
     </div>
   </div>
 </template>
-<script>
-import SidebarLink from "./SidebarLink.vue";
 
+<script>
 export default {
-  components: {
-    SidebarLink
-  },
   props: {
     title: {
       type: String,
-      default: "Vue MD"
+      default: "Thai Stringer"
     },
     backgroundImage: {
       type: String,
-      default: require("@/assets/img/sidebar-2.jpg")
+      default: require("~/assets/img/sidebar-2.jpg")
     },
     imgLogo: {
       type: String,
-      default: require("@/assets/img/vue-logo.png")
+      default: require("~/assets/img/ts_logo.png")
     },
     activeColor: {
       type: String,
@@ -90,6 +86,9 @@ export default {
 </script>
 
 <style>
+.nav a.md-list-item-container.active  {
+  background-color: #4caf50 !important;
+}
 @media screen and (min-width: 991px) {
   .nav-mobile-menu {
     display: none;

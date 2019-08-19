@@ -350,6 +350,17 @@ class Firestore {
     })
   }
 
+  getMessage(uid) {
+    return new Promise((resolve, reject) => {
+      let query = this.db.collection(this.Collection).doc(uid).collection('inbox')
+      query.get().then(result => {
+        resolve(result)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  }
+
 }
 
 module.exports = Firestore;

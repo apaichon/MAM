@@ -22,24 +22,46 @@ export default {
   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
+  ** Global CSS*/
   css: [
+    '~/assets/meterial-style.scss',
+    '~/assets/thaistring-style.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/vue-material',
-    '~/plugins/global-component'
+    '~/plugins/global-component',
+    '~/plugins/vue-date-fns',
+    '~/components/SidebarPlugin/sidebar'
   ],
   /* 
   ** Router
   */
   router: [
-    { path: '/', component: 'pages/index.vue'}, 
-    { path: '/dashboard', component: 'pages/Dashboard.vue'},
-    { path: '/addnews', component: 'pages/Addnews.vue'},
+    {
+      path: "/",
+      component: 'layout/DashboardLayout.vue',
+      redirect: "/",
+      children: [
+        {
+          path: "newslists",
+          name: "News Lists",
+          component: 'pages/NewsLists.vue'
+        },
+        {
+          path: "dashboard",
+          name: "Dashboard",
+          component: 'pages/Dashboard.vue'
+        },
+        {
+          path: "tablelist",
+          name: "Table List",
+          component: 'pages/Tablelist.vue'
+        }
+      ]
+    }
   ],
   /*
   ** Nuxt.js modules

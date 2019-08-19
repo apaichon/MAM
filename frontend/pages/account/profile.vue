@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <ProfileCard v-bind:email="email" />
+    <ChangePasswordCard v-bind:email="email" />
   </div>
 </template>
 
@@ -8,6 +9,7 @@
 import axios from "axios";
 import https from "https";
 import ProfileCard from "~/components/ProfileCard.vue";
+import ChangePasswordCard from "~/components/ChangePasswordCard.vue";
 
 export default {
   async asyncData() {
@@ -16,7 +18,8 @@ export default {
     };
   },
   components: {
-    ProfileCard
+    ProfileCard,
+    ChangePasswordCard
   }
 };
 </script>

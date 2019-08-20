@@ -28,8 +28,6 @@ class Messages {
   }
   async update(id, data, params) {
     await firebase.updateMessage(data)
-    await this.get(data.userId)
-    return this.messages.message
   }
   async remove(id, params) {
     const data = {
@@ -37,15 +35,29 @@ class Messages {
       messageId: params.query.messageId
     }
     await firebase.deleteMessage(data)
-    await this.get(data.userId)
-    return this.messages.message
   }
 }
 
 app.use('messages', new Messages())
 
+app.service('messages').hooks({
+  after: {
+    remove: [
+      async function (hook) {
+        const result = await this.get(hook.params.query.userId);
+        hook.result = result
+      }
+    ],
+    update: [
+      async function (hook) {
+        const result = await this.get(hook.data.userId);
+        hook.result = result
+      }
+    ]
+  }
+})
 app.use(express.errorHandler())
 
-const server = app.listen(3030)
+const server = app.listen(3032)
 
-server.on('listening', () => console.log('Feathers REST API started at http://localhost:3030'))
+server.on('listening', () => console.log('Feathers REST API started at http://localhost:3032'))

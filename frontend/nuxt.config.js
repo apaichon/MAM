@@ -24,7 +24,8 @@ export default {
   /*
   ** Global CSS*/
   css: [
-    '~/assets/meterial-style.scss'
+    '~/assets/meterial-style.scss',
+    '~/assets/thaistring-style.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -39,13 +40,16 @@ export default {
   ** Router
   */
   router: [
-    // { path: '/', component: import('~/pages/index.vue')}, 
-    // { path: '/dashboard', component: import('~/pages/Dashboard.vue')}, 
     {
       path: "/",
-      component: 'pages/Dashboard.vue',
-      redirect: "/dashboard",
+      component: 'layout/DashboardLayout.vue',
+      redirect: "/",
       children: [
+        {
+          path: "newslists",
+          name: "News Lists",
+          component: 'pages/NewsLists.vue'
+        },
         {
           path: "dashboard",
           name: "Dashboard",

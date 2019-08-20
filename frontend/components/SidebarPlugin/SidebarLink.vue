@@ -1,6 +1,6 @@
 <template>
   <li class="md-list-item">
-    <router-link
+    <nuxt-link
       class="md-list-item-router md-list-item-container md-button-clean"
       @click="hideSidebar"
       v-bind="$attrs"
@@ -11,7 +11,7 @@
           <p>{{ link.name }}</p>
         </slot>
       </div>
-    </router-link>
+    </nuxt-link>
   </li>
 </template>
 <script>

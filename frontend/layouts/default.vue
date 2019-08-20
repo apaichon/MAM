@@ -1,73 +1,41 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
-    <!-- <notifications></notifications> -->
-
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/dashboard">
-        <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+      <sidebar-link to="/newslists">
+        <i class="fas fa-newspaper"></i>
+        <p>All News</p>
       </sidebar-link>
-      <sidebar-link to="/tablelist">
-        <md-icon>content_paste</md-icon>
-        <p>Table list</p>
+      <sidebar-link to="/dashboard">
+        <i class="fas fa-image"></i>
+        <p>All Media</p>
       </sidebar-link>
     </side-bar>
 
     <div class="main-panel">
       <top-navbar></top-navbar>
-      <nuxt />
+      <transition name="fade" mode="out-in">
+        <nuxt />
+      </transition>
       <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
   </div>
 </template>
 
 <style>
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+@media screen and (min-width: 992px) {
+  .md-toolbar .md-button:first-child {
+    display: none;
+  }
 }
 </style>

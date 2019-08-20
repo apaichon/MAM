@@ -3,19 +3,19 @@
     <md-card>
       <md-card-content>
         <md-app md-mode="reveal" class="message-app">
-          <md-app-toolbar class="md-primary">
+          <md-app-toolbar class="md-primary" data-background-color="blue">
             <span class="md-title">กล่องข้อความ</span>
           </md-app-toolbar>
           <md-app-drawer :md-active.sync="menuVisible">
-            <md-toolbar class="md-primary" md-elevation="0">
+            <md-toolbar class="md-primary" data-background-color="blue" md-elevation="0">
               <div class="md-toolbar-section-start">
                   ข้อความ
               </div>
             <div class="md-toolbar-section-end">
-              <md-button @click="deleteMessage"  class="md-icon-button">
+              <md-button @click="deleteMessage" data-background-color="red"   class="md-icon-button" style="margin-right:10px;">
                     <md-icon>delete</md-icon>
               </md-button>
-              <md-button @click="menuVisible = false"  class="md-icon-button">
+              <md-button @click="menuVisible = false"  data-background-color="orange" class="md-icon-button">
                 <md-icon>close</md-icon>
               </md-button>
             </div>
@@ -94,7 +94,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('loadMessage', 'gJOCBRsRDOPWgj4ojEJGTdtyYZJ3')
+    this.$store.dispatch('loadMessage', this.userId)
   },
 };
 </script>

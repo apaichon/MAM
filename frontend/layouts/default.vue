@@ -6,10 +6,10 @@
         <i class="fas fa-newspaper"></i>
         <p>All News</p>
       </sidebar-link>
-      <sidebar-link to="/dashboard">
+      <!-- <sidebar-link to="/dashboard">
         <i class="fas fa-image"></i>
         <p>All Media</p>
-      </sidebar-link>
+      </sidebar-link> -->
     </side-bar>
 
     <div class="main-panel">

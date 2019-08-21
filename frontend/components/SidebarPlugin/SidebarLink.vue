@@ -7,7 +7,8 @@
     >
       <div class="md-list-item-content md-ripple">
         <slot>
-          <md-icon>{{ link.icon }}</md-icon>
+          <!-- <md-icon>{{ link.icon }}</md-icon> -->
+          <i></i>
           <p>{{ link.name }}</p>
         </slot>
       </div>
@@ -50,5 +51,3 @@ export default {
   }
 };
 </script>
-
-<style></style>

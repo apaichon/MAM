@@ -1,107 +1,95 @@
 <template>
-  <div class="content">
+  <div class="content" id="news-lists">
     <p>Today</p>
     <div class="md-layout">
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
         <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/padthai.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">ผัดไทยไม่หวานแล้ว</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
         </md-card>
       </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
         <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/scare.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">ก่อนคำหวานจะคืนกลับมาหลอน</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
         </md-card>
       </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
         <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/champion.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">แชมป์ปีแรกในรอบล้านปี</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
         </md-card>
       </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
         <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/grouper.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">ตกปลาเก๋าดับเพราะไม่เก๋าจริง</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
         </md-card>
       </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
         <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/padthai.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">ผัดไทยไม่หวานแล้ว</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
+        </md-card>
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
+        <md-card>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/scare.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">ก่อนคำหวานจะคืนกลับมาหลอน</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
+        </md-card>
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
+        <md-card>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/champion.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">แชมป์ปีแรกในรอบล้านปี</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
+        </md-card>
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
+        <md-card>
+          <div class="md-card-header-image">
+            <img src="~/assets/img/news/grouper.jpg" alt="People" />
+          </div>
+          <md-card-content>
+            <h4 class="card-title">ตกปลาเก๋าดับเพราะไม่เก๋าจริง</h4>
+            <!-- <md-button class="md-round md-success">Follow</md-button> -->
+          </md-card-content>
         </md-card>
       </div>
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.md-card {
-//   width: 320px;
-//   margin: 4px;
-  display: inline-block;
-  vertical-align: top;
-  .md-card-header {
-    background-color: transparent;
-    box-shadow: none;
-  }
-}
-
-.md-card-example {
-  .md-subhead {
-    .md-icon {
-      $size: 16px;
-
-      width: $size;
-      min-width: $size;
-      height: $size;
-      font-size: $size !important;
-    }
-
-    span {
-      vertical-align: middle;
-    }
-  }
-
-  .card-reservation {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .md-icon {
-      margin: 8px;
-    }
-  }
-
-  .md-button-group {
-    display: flex;
-
-    .md-button {
-      min-width: 60px;
-      border-radius: 2px;
-    }
-  }
-}
-</style>

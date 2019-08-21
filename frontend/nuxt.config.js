@@ -39,30 +39,32 @@ export default {
   /* 
   ** Router
   */
-  router: [
-    {
-      path: "/",
-      component: 'layout/DashboardLayout.vue',
-      redirect: "/",
-      children: [
-        {
-          path: "newslists",
-          name: "News Lists",
-          component: 'pages/NewsLists.vue'
-        },
-        {
-          path: "dashboard",
-          name: "Dashboard",
-          component: 'pages/Dashboard.vue'
-        },
-        {
-          path: "tablelist",
-          name: "Table List",
-          component: 'pages/Tablelist.vue'
-        }
-      ]
-    }
-  ],
+  router: {
+    linkActiveClass: 'active',
+    routes: [
+      {
+        path: "/",
+        component: 'layout/DashboardLayout.vue',
+        children: [
+          {
+            path: "addnews",
+            name: "Add News",
+            component: 'pages/AddNews.vue'
+          },
+          {
+            path: "newslists",
+            name: "News Lists",
+            component: 'pages/AddNews.vue'
+          },
+          {
+            path: "dashboard",
+            name: "Dashboard",
+            component: 'pages/Dashboard.vue'
+          },
+        ]
+      }
+    ]
+  },
   /*
   ** Nuxt.js modules
   */

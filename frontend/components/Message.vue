@@ -26,20 +26,19 @@
           </md-app-drawer>
           <md-app-content>
             <md-table v-if="allMessage" v-model="allMessage" >
-              <md-table-toolbar v-if="allMessage && allMessage.length !==0">
+              <md-table-toolbar class="search-toolbar" v-if="allMessage && allMessage.length !==0">
                 <div class="md-toolbar-section-start">
-                  <h1 class="md-title">Users</h1>
                 </div>
-                <md-field md-clearable class="md-toolbar-section-end">
-                  <md-input placeholder="ค้นหาผู้ส่ง" v-model="search" @input="searchOnTable" />
+                <md-field md-clearable class="md-toolbar-section-end md-layout-item md-size-30">
+                  <md-input placeholder="ค้นหาจากผู้ส่ง" v-model="search" @input="searchOnTable" />
                 </md-field>
               </md-table-toolbar>
-              <md-table-row @click="openMessage(item.message, item.id, item.isRead)" slot="md-table-row" slot-scope="{item}" >
-                <md-table-cell md-label="ผู้ส่ง"><md-badge v-if="!item.isRead" class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
-                <md-table-cell md-label="เรื่อง">{{ subText(item.subject) }}</md-table-cell>
-                <md-table-cell md-label="ข้อความ">{{ subText(item.message) }}</md-table-cell>
-                <md-table-cell md-label="เวลา">{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
-              </md-table-row>
+                <md-table-row @click="openMessage(item.message, item.id, item.isRead)" slot="md-table-row" slot-scope="{item}" >
+                  <md-table-cell md-label="ผู้ส่ง"><md-badge v-if="!item.isRead" class="md-square" md-content="New" />{{ item.sender }}</md-table-cell>
+                  <md-table-cell md-label="เรื่อง">{{ subText(item.subject) }}</md-table-cell>
+                  <md-table-cell md-label="ข้อความ">{{ subText(item.message) }}</md-table-cell>
+                  <md-table-cell md-label="เวลา">{{ item.createdAt | date('DD/MM/YYYY HH:mm') }}</md-table-cell>
+                </md-table-row>
             </md-table>
              <md-empty-state v-if="inboxIsEmpty"
               md-icon="mail_outline"
@@ -115,6 +114,9 @@ export default {
 </script>
 
 <style>
+  .search-toolbar {
+    padding: 0px;
+  }
   .close-icon {
     position:absolute;
     right:20px;

@@ -8,11 +8,17 @@ const state = () => {
       }
     },
     state: {
-      message: null
+      message: null,
+      searched: null,
+      keyword: null
     },
     mutations: {
       GET_MESSAGE(state, message) {
         state.message = message
+      },
+      SEARCH_MESSAGE(state, data) {
+        state.searched = data.message
+        state.keyword = data.keyword
       }
     },
     actions: {
@@ -22,14 +28,40 @@ const state = () => {
       },
       async updateStatusMessage({ commit }, data) {
         const res = await messageService.updateStatus(data)
-        commit('GET_MESSAGE', res)
+        if (this.state.keyword) {
+          const search = searchName(res, this.state.keyword)
+          commit('SEARCH_MESSAGE', {
+            message: search,
+            keyword: this.state.keyword
+          })
+          commit('GET_MESSAGE', res)
+        } else {
+          commit('GET_MESSAGE', res)
+        }
       },
       async deleteMessage({ commit }, data) {
         const res = await messageService.deleteMessage(data)
         commit('GET_MESSAGE', res)
+        commit('SEARCH_MESSAGE', {
+          message: res,
+          keyword: this.state.keyword
+        })
         return
+      },
+      searchByName({ commit }, keyword) {
+        const res = searchName([...this.state.message], keyword)
+        commit('SEARCH_MESSAGE', {
+          message: res,
+          keyword
+        })
       }
     }
+  })
+}
+
+const searchName = (message, keyword) => {
+  return message.filter(item => {
+    return item.sender.toString().toLowerCase().includes(keyword.toString().toLowerCase())
   })
 }
 

@@ -73,7 +73,7 @@ export default {
       this.fullMessage = message
       this.messageId = messageId
       if (!status) {
-        this.$store.dispatch('updateStatusMessage', {
+        this.$store.dispatch('message/updateStatusMessage', {
           userId: this.userId,
           messageId
         })
@@ -83,7 +83,7 @@ export default {
       return text.length > 60 ? text.substr(0,60) + '..' : text
     },
     deleteMessage() {
-      this.$store.dispatch('deleteMessage', {
+      this.$store.dispatch('message/deleteMessage', {
         userId: this.userId,
         messageId: this.messageId
       }).then(() => {
@@ -91,24 +91,24 @@ export default {
       })
     },
     searchOnTable () {
-      this.$store.dispatch('searchByName', this.search)
+      this.$store.dispatch('message/searchByName', this.search)
     }
   },
   computed: {
     ...mapState(['message', 'searched']),
     allMessage() {
-      return this.search ? this.searched : this.message
+      return this.search ? this.message.searched : this.message.message
     },
     inboxIsEmpty() {
       let isEmpty
-      if (this.message) {
-        isEmpty = this.message.length === 0 ? true : false
+      if (this.message.message) {
+        isEmpty = this.message.message.length === 0 ? true : false
       }
       return isEmpty
     }
   },
   mounted() {
-    this.$store.dispatch('loadMessage', this.userId)
+    this.$store.dispatch('message/loadMessage', this.userId)
   },
 };
 </script>

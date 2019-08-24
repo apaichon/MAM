@@ -2,7 +2,7 @@
   <div class="content">
     <p>Add news :No news related</p>
     <div class="md-layout">
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-65">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
         <md-card class="md-card-stats">
           <md-card-header data-background-color="orange">
             <i class="fa fa-tag"></i>
@@ -21,15 +21,16 @@
         </md-card>
       </div>
 
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-35">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
         <md-card class="md-card-stats">
           <md-card-header data-background-color="blue">
             <i class="fa fa-cloud-upload-alt"></i>
           </md-card-header>
           <md-card-content>
             <p class="text-left">New detail</p>
-            <div>
-              <md-button class="md-primary">Primary</md-button>
+            <div id="upload-file">
+              <md-button class="md-success">Browse</md-button>
+              <label>Or Drag & Drop file here</label>
             </div>
           </md-card-content>
         </md-card>
@@ -48,3 +49,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  #upload-file {
+    display: flex;
+    margin-top: 5em;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+  }
+</style>

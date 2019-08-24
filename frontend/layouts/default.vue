@@ -4,7 +4,11 @@
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/newslists">
         <i class="fas fa-newspaper"></i>
-        <p>All News</p>
+        <p>News</p>
+      </sidebar-link>
+      <sidebar-link to="/media">
+        <i class="fas fa-image"></i>
+        <p>Media</p>
       </sidebar-link>
       <!-- <sidebar-link to="/dashboard">
         <i class="fas fa-image"></i>

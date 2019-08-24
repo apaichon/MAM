@@ -43,25 +43,19 @@ export default {
     linkActiveClass: 'active',
     routes: [
       {
-        path: "/",
-        component: 'layout/DashboardLayout.vue',
-        children: [
-          {
-            path: "addnews",
-            name: "Add News",
-            component: 'pages/AddNews.vue'
-          },
-          {
-            path: "newslists",
-            name: "News Lists",
-            component: 'pages/AddNews.vue'
-          },
-          {
-            path: "dashboard",
-            name: "Dashboard",
-            component: 'pages/Dashboard.vue'
-          },
-        ]
+        path: "/addnews",
+        name: "Add News",
+        component: 'pages/AddNews.vue'
+      },
+      {
+        path: "/newslists",
+        name: "News Lists",
+        component: 'pages/NewsLists.vue'
+      },
+      {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: 'pages/Dashboard.vue'
       }
     ]
   },

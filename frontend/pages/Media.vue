@@ -10,10 +10,8 @@
           class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
         >
           <md-card>
-            <div class="md-card-header-image">
-              <img :src="n.image" alt="People" />
-            </div>
             <md-card-content>
+              <img :src="n.image" alt="People" />
               <h4 class="card-title">{{ n.title }}</h4>
             </md-card-content>
           </md-card>

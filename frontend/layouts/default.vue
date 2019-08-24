@@ -10,10 +10,6 @@
         <i class="fas fa-image"></i>
         <p>Media</p>
       </sidebar-link>
-      <!-- <sidebar-link to="/dashboard">
-        <i class="fas fa-image"></i>
-        <p>All Media</p>
-      </sidebar-link> -->
     </side-bar>
 
     <div class="main-panel">
@@ -23,6 +19,8 @@
       </transition>
       <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
+
+    <!-- <more-news></more-news> -->
   </div>
 </template>
 

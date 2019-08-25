@@ -3,11 +3,13 @@
     <p>Add news :No news related <a href="/">Add ralated news</a></p>
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
-        <md-card class="md-card-stats">
-          <md-card-header data-background-color="orange">
+        <stats-card data-background-color="orange">
+          <template slot="header">
             <i class="fa fa-tag"></i>
-          </md-card-header>
-          <md-card-content>
+          </template>
+
+          <template slot="content">
+            <p class="category">News detail</p>
             <md-field>
               <label>Title</label>
               <md-input></md-input>
@@ -22,7 +24,7 @@
             </md-field>
             <md-field>
               <label>Short Description</label>
-              <md-textarea></md-textarea>
+              <md-textarea class="short-description"></md-textarea>
             </md-field>
             <md-field>
               <label>Full Description</label>
@@ -34,7 +36,7 @@
             </md-field>
             <md-field>
               <label>Genre</label>
-              <md-textarea></md-textarea>
+              <md-textarea class="genre"></md-textarea>
             </md-field>
             <md-field>
               <label>Location</label>
@@ -44,15 +46,18 @@
               <label>Thumbnall</label>
               <md-file />
             </md-field>
-          </md-card-content>
-        </md-card>
-      </div>
+          </template>
 
+          <!-- <template slot="footer">
+            <div class="stats">
+              <md-icon class="text-danger">warning</md-icon>
+              <a href="#pablo">Get More Space...</a>
+            </div>
+          </template> -->
+        </stats-card>
+      </div>
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
-        <md-card class="md-card-stats">
-          <!-- <md-card-header data-background-color="blue">
-            <i class="fa fa-cloud-upload-alt"></i>
-          </md-card-header> -->
+        <md-card>
           <md-card-content>
             <p class="text-left">Sale condition</p>
             <md-checkbox>Limit Sale</md-checkbox>
@@ -100,21 +105,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  #addnews {
-    #upload-file {
-      display: flex;
-      margin-top: 5em;
-      justify-content: space-between;
-      align-content: center;
-      align-items: center;
-    }
-    .md-card-stats .md-card-content {
-      text-align: left;
-    }
-    .md-radio {
-      display: flex;
-    }
+<style lang="scss" scoped>
+  #search {
+    display: none;
   }
-  
 </style>

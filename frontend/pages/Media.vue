@@ -1,5 +1,12 @@
 <template>
   <div class="content" id="news-lists">
+    <div class="md-toolbar-row">
+      <md-field id="search">
+        <md-icon>search</md-icon>
+        <label>Search news</label>
+        <md-input></md-input>
+      </md-field>
+    </div>
     <div class="news-grid">
       <p>Today</p>
       <div class="md-layout">
@@ -71,5 +78,11 @@ export default {
     .news-grid {
       position: relative;
     }
+  }
+</style>
+
+<style lang="scss" scoped>
+  .content {
+    padding-top: 0;
   }
 </style>

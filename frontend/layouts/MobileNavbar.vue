@@ -32,20 +32,11 @@
 </template>
 <script>
 export default {
+  name: 'mobile-menu',
   data() {
     return {
       search: null,
-      selectedEmployee: null,
-      employees: [
-        "Jim Halpert",
-        "Dwight Schrute",
-        "Michael Scott",
-        "Pam Beesly",
-        "Angela Martin",
-        "Kelly Kapoor",
-        "Ryan Howard",
-        "Kevin Malone"
-      ]
+      selectedEmployee: null
     };
   }
 };

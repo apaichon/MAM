@@ -18,24 +18,15 @@
         <nuxt />
       </transition>
     </div>
-
   </div>
 </template>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.1s;
-}
+<script>
+import MobileMenu from '~/layouts/MobileNavbar.vue'
 
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
-@media screen and (min-width: 992px) {
-  .md-toolbar .md-button:first-child {
-    display: none;
+export default {
+  components: {
+    MobileMenu
   }
 }
-</style>
+</script>

@@ -17,10 +17,8 @@
       <transition name="fade" mode="out-in">
         <nuxt />
       </transition>
-      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
 
-    <!-- <more-news></more-news> -->
   </div>
 </template>
 

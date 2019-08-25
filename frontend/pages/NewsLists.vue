@@ -47,7 +47,7 @@ export default {
         },
         {
           title: "แชมป์ปีแรกในรอบล้านปี",
-          image: champion,
+          image: scare,
           description: "",
           item: []
         },
@@ -72,7 +72,6 @@ export default {
   #news-lists {
     .news-grid {
       position: relative;
-      // width: calc(100% - 260px);z
     }
   }
 </style>

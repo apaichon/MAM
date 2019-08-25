@@ -16,12 +16,14 @@
           @click="showDetail"
           class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
         >
-          <md-card>
-            <md-card-content>
+          <news-item>
+            <template slot="image">
               <img :src="n.image" alt="People" />
-              <h4 class="card-title">{{ n.title }}</h4>
-            </md-card-content>
-          </md-card>
+            </template>
+            <template slot="title">
+              <h4>{{ n.title }}</h4>
+            </template>
+          </news-item>
         </div>
       </div>
     </div>
@@ -29,37 +31,41 @@
 </template>
 
 <script>
+import NewsItem from '~/components/NewsItem.vue'
 import padthai from '~/assets/img/news/padthai.jpg'
 import scare from '~/assets/img/news/scare.jpg'
 import champion from '~/assets/img/news/champion.jpg'
 import grouper from '~/assets/img/news/grouper.jpg'
 
 export default {
+  components: {
+    NewsItem
+  },
   data () {
     return {
       news: [
         {
-          title: "ผัดไทยไม่หวานแล้ว",
+          title: 'ผัดไทยไม่หวานแล้ว',
           image: padthai,
-          description: "",
+          description: '',
           item: []
         },
         {
-          title: "ก่อนคำหวานจะคืนกลับมาหลอน",
+          title: 'ก่อนคำหวานจะคืนกลับมาหลอน',
           image: scare,
-          description: "",
+          description: '',
           item: []
         },
         {
-          title: "แชมป์ปีแรกในรอบล้านปี",
+          title: 'แชมป์ปีแรกในรอบล้านปี',
           image: scare,
-          description: "",
+          description: '',
           item: []
         },
         {
-          title: "ตกปลาเก๋าดับเพราะไม่เก๋าจริง",
+          title: 'ตกปลาเก๋าดับเพราะไม่เก๋าจริง',
           image: grouper,
-          description: "",
+          description: '',
           item: []
         }
       ]

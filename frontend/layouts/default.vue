@@ -6,7 +6,7 @@
         <i class="fas fa-newspaper"></i>
         <p>News</p>
       </sidebar-link>
-      <sidebar-link to="/media">
+      <sidebar-link to="/medialists">
         <i class="fas fa-image"></i>
         <p>Media</p>
       </sidebar-link>

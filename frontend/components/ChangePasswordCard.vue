@@ -1,39 +1,43 @@
 <template>
-  <div class="profile-container">
+  <div class="change-password-container">
     <md-card style="width: 500px;">
-      <md-card-header>
-        <div class="md-title">Change Password</div>
+      <md-card-header data-background-color="purple">
+        <h4 class="title">Change Password</h4>
+        <p class="category">It's time to change</p>
       </md-card-header>
 
-      <md-card-content>
-        <md-field>
-          <label>Email</label>
-          <md-input id="email" v-model="account.email" disabled></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>Current Password</label>
-          <md-input id="current-password"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>New Password</label>
-          <md-input id="new-password"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>Confirm Password</label>
-          <md-input id="confirm-password"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <div class="md-layout-item md-size-100"></div>
-      </md-card-content>
+      <form @submit="changePassword">
+        <md-card-content style="padding-top: 20px;">
+          <md-field>
+            <label>Email (Readonly)</label>
+            <md-input v-model="account.email" disabled></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>Current Password</label>
+            <md-input v-model="currentPassword" ref="currentPassword" type="password"></md-input>
+            <span class="md-helper-text"></span>
+            <span class="md-error"></span>
+          </md-field>
+          <md-field>
+            <label>New Password</label>
+            <md-input v-model="newPassword" type="password"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>Confirm Password</label>
+            <md-input v-model="confirmPassword" type="password"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <div class="md-layout-item md-size-100"></div>
+        </md-card-content>
 
-      <md-card-actions>
-        <md-button class="md-primary" @click="changePassword">Confirm</md-button>
-      </md-card-actions>
+        <md-card-actions>
+          <md-button class="md-primary" type="submit" value="submit">Confirm</md-button>
+        </md-card-actions>
+      </form>
 
-      <div class="change-password-card-loader">
+      <div ref="loader" class="change-password-card-loader">
         <div>
           <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
@@ -49,14 +53,17 @@ import https from "https";
 export default {
   props: ["email"],
   data() {
-    return { account: {} };
+    return {
+      account: {},
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: ""
+    };
   },
   created() {
     this.getAccount();
   },
-  mounted() {
-    this.cardLoaded();
-  },
+  mounted() {},
   methods: {
     getAccount() {
       axios({
@@ -73,25 +80,78 @@ export default {
           rejectUnauthorized: false
         }),
         data: {
-          condition: {
-            filter: ["email", "==", this.email]
-          }
+          filter: ["email", "==", this.email]
         }
       }).then(({ data }) => {
         this.account = data.data.shift();
         this.cardLoaded();
+        this.$refs.currentPassword.$el.focus();
       });
     },
-    changePassword() {
-      alert("not implemented!");
+    changePassword(e) {
+      e.preventDefault();
+
+      if (!this.currentPassword) {
+        alert("Please enter your current password.");
+        return;
+      }
+      if (!this.newPassword) {
+        alert("Please enter your new password.");
+        return;
+      }
+      if (!this.confirmPassword) {
+        alert("Please confirm your new password.");
+        return;
+      }
+      if (this.newPassword !== this.confirmPassword) {
+        alert("New password doesn't match.");
+        return;
+      }
+
+      this.cardLoading();
+      axios({
+        method: "post",
+        url: process.env.baseUrl,
+        headers: {
+          "Content-Type": "application/json",
+          application: "Thai Stringers",
+          objectfile: "../../biz/AccountBiz",
+          objectname: "AccountBiz",
+          objectmethod: "ChangePassword"
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false
+        }),
+        data: {
+          condition: ["email", "==", this.email],
+          data: {
+            oldPassword: this.currentPassword,
+            newPassword: this.newPassword
+          }
+        }
+      }).then(({ data }) => {
+        if (
+          data.code !== 200 &&
+          data.message === "Current password is not match!"
+        ) {
+          alert(data.message);
+          this.$refs.currentPassword.$el.focus();
+        } else {
+          alert("เปลี่ยนรหัสผ่านสำเร็จ");
+          this.currentPassword = "";
+          this.newPassword = "";
+          this.confirmPassword = "";
+        }
+        this.cardLoaded();
+      });
     },
     cardLoading() {
-      const loader = document.querySelector(".change-password-card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 1;
       loader.style.visibility = "visible";
     },
     cardLoaded() {
-      const loader = document.querySelector(".change-password-card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
     }
@@ -100,9 +160,10 @@ export default {
 </script>
 
 <style scoped>
-.profile-container {
+.change-password-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .change-password-card-loader {

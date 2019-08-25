@@ -1,59 +1,62 @@
 <template>
   <div class="profile-container">
     <md-card style="width: 500px;">
-      <md-card-header>
-        <div class="md-title">Edit Profile</div>
+      <md-card-header data-background-color="blue">
+        <h4 class="title">Edit Profile</h4>
+        <p class="category">Complete your profile</p>
       </md-card-header>
 
-      <md-card-content>
-        <div style="display: flex; justify-content: center; margin: 10px 0;">
-          <div
-            class="profile-image-box"
-            @mouseenter="showChangeImage"
-            @mouseleave="hideChangeImage"
-            @click="changeProfileImage"
-          >
-            <div id="profile-image">
-              <span class="change-profile-image">Change</span>
+      <form @submit="updateProfile">
+        <md-card-content style="padding-top: 20px;">
+          <div style="display: flex; justify-content: center; margin: 10px 0;">
+            <div
+              class="profile-image-box"
+              @mouseenter="showChangeImage"
+              @mouseleave="hideChangeImage"
+              @click="changeProfileImage"
+            >
+              <div id="profile-image">
+                <span class="change-profile-image">Change</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div style="display: flex; text-align: center">
-          <div class="font-2x balance-panel" style="width: 50%">
-            <i class="fas fa-coins"></i> 0.00
+          <div style="display: flex; text-align: center">
+            <div class="font-2x balance-panel" style="width: 50%">
+              <i class="fas fa-coins"></i> 0.00
+            </div>
+            <div class="font-2x balance-panel" style="width: 50%">
+              <i class="fas fa-dollar-sign"></i> 0.00
+            </div>
           </div>
-          <div class="font-2x balance-panel" style="width: 50%">
-            <i class="fas fa-dollar-sign"></i> 0.00
-          </div>
-        </div>
-        <md-field>
-          <label>Email</label>
-          <md-input id="email" v-model="profile.email" disabled></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>First Name</label>
-          <md-input id="firstName" v-model="profile.firstName"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>Last Name</label>
-          <md-input id="lastName" v-model="profile.lastName"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <md-field>
-          <label>Mobile No.</label>
-          <md-input id="mobileNo" v-model="profile.mobileNo"></md-input>
-          <span class="md-helper-text"></span>
-        </md-field>
-        <div class="md-layout-item md-size-100"></div>
-      </md-card-content>
 
-      <md-card-actions>
-        <md-button class="md-primary" @click="updateProfile">Update</md-button>
-      </md-card-actions>
+          <md-field>
+            <label>Email (Readonly)</label>
+            <md-input v-model="profile.email" disabled></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>First Name</label>
+            <md-input v-model="profile.firstName"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>Last Name</label>
+            <md-input v-model="profile.lastName"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+          <md-field>
+            <label>Mobile No.</label>
+            <md-input v-model="profile.mobileNo"></md-input>
+            <span class="md-helper-text"></span>
+          </md-field>
+        </md-card-content>
 
-      <div class="card-loader">
+        <md-card-actions>
+          <md-button class="md-info" type="submit" value="submit">Update</md-button>
+        </md-card-actions>
+      </form>
+
+      <div ref="loader" class="card-loader">
         <div>
           <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
@@ -99,9 +102,7 @@ export default {
           rejectUnauthorized: false
         }),
         data: {
-          condition: {
-            filter: ["email", "==", this.email]
-          }
+          filter: ["email", "==", this.email]
         }
       }).then(({ data }) => {
         this.profile = data.data.shift();
@@ -111,15 +112,16 @@ export default {
         this.cardLoaded();
       });
     },
-    updateProfile() {
+    updateProfile(e) {
+      e.preventDefault();
       this.cardLoading();
 
       const reqBody = {
         condition: ["id", "==", this.profile.id],
         data: {
-          firstName: document.querySelector("#firstName").value,
-          lastName: document.querySelector("#lastName").value,
-          mobileNo: document.querySelector("#mobileNo").value
+          firstName: this.profile.firstName,
+          lastName: this.profile.lastName,
+          mobileNo: this.profile.mobileNo
         }
       };
 
@@ -147,12 +149,12 @@ export default {
       alert("Not implemented!");
     },
     cardLoading() {
-      const loader = document.querySelector(".card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 1;
       loader.style.visibility = "visible";
     },
     cardLoaded() {
-      const loader = document.querySelector(".card-loader");
+      const loader = this.$refs.loader;
       loader.style.opacity = 0;
       loader.style.visibility = "hidden";
     }
@@ -165,6 +167,7 @@ export default {
 .profile-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .profile-image-box {

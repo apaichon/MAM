@@ -2,6 +2,7 @@ import Vue from 'vue'
 import TopNavbar from '../layouts/TopNavbar'
 import MobileNavbar from '../layouts/MobileNavbar'
 import ContentFooter from '../layouts/ContentFooter'
+import MoreNews from '../layouts/DetailNews'
 import Sidebar from '../components/SidebarPlugin/SideBar'
 import SidebarLink from '../components/SidebarPlugin/SidebarLink'
 import ChartCard from '../components/Card/ChartCard'
@@ -12,6 +13,7 @@ import OrderedTable from '../components/Tables/OrderedTable'
 import SimpleTable from '../components/Tables/OrderedTable'
 import DropDown from '../components/DropDown'
 
+Vue.component("more-news", MoreNews)
 Vue.component("side-bar", Sidebar)
 Vue.component("sidebar-link", SidebarLink)
 Vue.component('top-navbar', TopNavbar)

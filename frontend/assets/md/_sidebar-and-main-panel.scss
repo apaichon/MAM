@@ -169,7 +169,7 @@
       line-height: 30px;
       width: 30px;
       text-align: center;
-      color: #a9afbb;
+      // color: #a9afbb;
     }
   }
 
@@ -309,6 +309,8 @@
 .main-panel {
   position: relative;
   float: right;
+  // left: 260px;
+  // width: $sidebar-width-news;
   width: $sidebar-width;
   @include transition(0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 

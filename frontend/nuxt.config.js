@@ -40,7 +40,9 @@ export default {
   /*
   ** Router
   */
-  
+  router: {
+    linkActiveClass: 'active'
+  },
   /*
   ** Nuxt.js modules
   */

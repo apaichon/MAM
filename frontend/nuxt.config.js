@@ -25,7 +25,8 @@ export default {
   /*
   ** Global CSS*/
   css: [
-    '~/assets/meterial-style.scss'
+    '~/assets/meterial-style.scss',
+    '~/assets/thaistring-style.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -39,27 +40,7 @@ export default {
   /*
   ** Router
   */
-  router: [
-    // { path: '/', component: import('~/pages/index.vue')},
-    // { path: '/dashboard', component: import('~/pages/Dashboard.vue')},
-    {
-      path: "/",
-      component: 'pages/Dashboard.vue',
-      redirect: "/dashboard",
-      children: [
-        {
-          path: "dashboard",
-          name: "Dashboard",
-          component: 'pages/Dashboard.vue'
-        },
-        {
-          path: "tablelist",
-          name: "Table List",
-          component: 'pages/Tablelist.vue'
-        }
-      ]
-    }
-  ],
+  
   /*
   ** Nuxt.js modules
   */

@@ -13,8 +13,7 @@
       </a>
 
       <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
-        target="_blank"
+        href="/"
         class="simple-text logo-normal"
       >
         {{ title }}
@@ -37,13 +36,9 @@
     </div>
   </div>
 </template>
-<script>
-import SidebarLink from "./SidebarLink.vue";
 
+<script>
 export default {
-  components: {
-    SidebarLink
-  },
   props: {
     title: {
       type: String,
@@ -90,8 +85,8 @@ export default {
 </script>
 
 <style>
-.nav .md-list-item-container.active  {
-  background-color: #4caf50!important;
+.nav a.md-list-item-container.active  {
+  background-color: #4caf50 !important;
 }
 @media screen and (min-width: 991px) {
   .nav-mobile-menu {

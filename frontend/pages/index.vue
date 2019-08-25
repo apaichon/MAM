@@ -11,7 +11,9 @@
 <script>
 export default {
   created() {
-    setTimeout(() => this.$router.push({ path: '/newslists' }), 1000);
+    setTimeout(() => {
+      this.$router.push({ path: '/newslists' })
+    }, 1000);
   }
 }
 </script>

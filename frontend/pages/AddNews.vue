@@ -14,7 +14,7 @@
             </md-field>
             <md-field>
               <label for="category">News Category</label>
-              <!-- <md-select v-model="category" name="category" id="category"> -->
+              <md-select name="category" id="category">
                 <md-option value="fight-club">item1</md-option>
                 <md-option value="godfather">item2</md-option>
                 <md-option value="godfather-ii">item3</md-option>
@@ -42,7 +42,7 @@
             </md-field>
             <md-field>
               <label>Thumbnall</label>
-              <md-file v-model="single" />
+              <md-file />
             </md-field>
           </md-card-content>
         </md-card>
@@ -58,20 +58,20 @@
             <md-checkbox>Limit Sale</md-checkbox>
             <md-field>
               <label for="category">Select Buyer</label>
-              <md-select v-model="category" name="category" id="category">
+              <md-select name="category" id="category">
                 <md-option value="fight-club">item1</md-option>
                 <md-option value="godfather">item2</md-option>
                 <md-option value="godfather-ii">item3</md-option>
               </md-select>
             </md-field>
             <div>
-              <md-radio v-model="radio" value="accent">Forever</md-radio>
-              <md-radio v-model="radio" value="Primary" class="md-primary">Before 6PM</md-radio>
-              <md-radio v-model="radio" value="Primary" class="md-primary">Before 5PM</md-radio>
+              <md-radio value="accent">Forever</md-radio>
+              <md-radio value="Primary" class="md-primary">Before 6PM</md-radio>
+              <md-radio value="Primary" class="md-primary">Before 5PM</md-radio>
             </div>
             <md-field>
               <label for="category">Term of Usage</label>
-              <md-select v-model="category" name="category" id="category">
+              <md-select name="category" id="category">
                 <md-option value="fight-club">item1</md-option>
                 <md-option value="godfather">item2</md-option>
                 <md-option value="godfather-ii">item3</md-option>

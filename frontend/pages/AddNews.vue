@@ -3,11 +3,10 @@
     <p>Add news :No news related <a href="/">Add ralated news</a></p>
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
-        <stats-card data-background-color="orange">
+        <standard-card data-background-color="orange">
           <template slot="header">
             <i class="fa fa-tag"></i>
           </template>
-
           <template slot="content">
             <p class="category">News detail</p>
             <md-field>
@@ -47,14 +46,7 @@
               <md-file />
             </md-field>
           </template>
-
-          <!-- <template slot="footer">
-            <div class="stats">
-              <md-icon class="text-danger">warning</md-icon>
-              <a href="#pablo">Get More Space...</a>
-            </div>
-          </template> -->
-        </stats-card>
+        </standard-card>
       </div>
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
         <md-card>
@@ -91,11 +83,62 @@
         </md-card>
       </div>
     </div>
+    <div class="md-layout">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
+        <standard-card data-background-color="blue">
+          <template slot="header">
+            <i class="fas fa-film"></i>
+          </template>
+          <template slot="content">
+            <p class="category">Video Upload</p>
+            <md-field>
+              <label>Title</label>
+              <md-input></md-input>
+            </md-field>
+            <md-field>
+              <label>Video files</label>
+              <md-file accept="video/*" />
+            </md-field>
+            <md-button>
+              <md-icon>add</md-icon>
+              Add Video
+            </md-button>
+          </template>
+        </standard-card>
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
+        <standard-card data-background-color="blue">
+          <template slot="header">
+            <i class="fas fa-image"></i>
+          </template>
+          <template slot="content">
+            <p class="category">Image Upload</p>
+            <md-field>
+              <label>Title</label>
+              <md-input></md-input>
+            </md-field>
+            <md-field>
+              <label>Image files</label>
+              <md-file accept="image/*" />
+            </md-field>
+            <md-button>
+              <md-icon>add</md-icon>
+              Add Image
+            </md-button>
+          </template>
+        </standard-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import StandardCard from '~/components/Card/StandardCard.vue'
+
 export default {
+  components: {
+    StandardCard
+  },
   props: {
     dataBackgroundColor: {
       type: String,

@@ -1,6 +1,14 @@
 <template>
   <div class="content" id="addnews">
-    <p>Add news :No news related <a href="/">Add ralated news</a></p>
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <p>Add news :No news related <a href="/">Add ralated news</a></p>
+      </div>
+      <div class="md-layout-item text-right">
+        <md-button>Save Draft</md-button>
+        <md-button>Ready to Sale</md-button>
+      </div>
+    </div>
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
         <standard-card data-background-color="orange">
@@ -127,6 +135,50 @@
             </md-button>
           </template>
         </standard-card>
+      </div>
+    </div>
+    <div class="md-layout">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
+        <standard-card data-background-color="green">
+          <template slot="header">
+            <i class="far fa-file-alt"></i>
+          </template>
+          <template slot="content">
+            <p class="category">File Article Upload</p>
+            <md-field>
+              <label>Title</label>
+              <md-input></md-input>
+            </md-field>
+            <md-field>
+              <label>Article files</label>
+              <md-file />
+            </md-field>
+            <md-button>
+              <md-icon>add</md-icon>
+              Add Article
+            </md-button>
+          </template>
+        </standard-card>
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
+        <md-card>
+          <md-card-content>
+            <p class="text-left">Copyright and Additional Info</p>
+            <md-field>
+              <label>Copyright Holder</label>
+              <md-input></md-input>
+            </md-field>
+            <md-field>
+              <label>Copyright Notice</label>
+              <md-input></md-input>
+            </md-field>
+            <md-field>
+              <label>Additional Info</label>
+              <md-input></md-input>
+            </md-field>
+            <md-button>Set to Default</md-button>
+          </md-card-content>
+        </md-card>
       </div>
     </div>
   </div>

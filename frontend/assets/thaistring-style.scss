@@ -8,6 +8,71 @@
   opacity: 0;
 }
 
+#news-lists {
+  h4 {
+    font-size: 16px;
+  }
+  .md-card {
+    //   width: 320px;
+    //   margin: 4px;
+    display: inline-block;
+    vertical-align: top;
+    .md-card-header {
+      background-color: transparent;
+      box-shadow: none;
+    }
+    .md-card-header-image {
+      position: relative;
+      padding: 0;
+      z-index: 2;
+      margin-left: 15px;
+      margin-right: 15px;
+      margin-top: -30px;
+      border-radius: 6px;
+      img {
+        border-radius: 6px;
+      }
+    }
+  }
+
+  .md-card-example {
+    .md-subhead {
+      .md-icon {
+        $size: 16px;
+
+        width: $size;
+        min-width: $size;
+        height: $size;
+        font-size: $size !important;
+      }
+
+      span {
+        vertical-align: middle;
+      }
+    }
+
+    .card-reservation {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .md-icon {
+        margin: 8px;
+      }
+    }
+
+    .md-button-group {
+      display: flex;
+
+      .md-button {
+        min-width: 60px;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 992px) {
   .md-toolbar .md-button:first-child {
     display: none;

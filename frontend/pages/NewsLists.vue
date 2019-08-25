@@ -1,107 +1,77 @@
 <template>
-  <div class="content">
-    <p>Today</p>
-    <div class="md-layout">
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
-        <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
-        </md-card>
-      </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
-        <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
-        </md-card>
-      </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
-        <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
-        </md-card>
-      </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
-        <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
-        </md-card>
-      </div>
-      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20">
-        <md-card>
-          <md-card-media>
-            <img src="https://img.icons8.com/small/200/000000/image.png" alt="People" />
-          </md-card-media>
-          <md-card-header>
-            <div class="md-title">Title News</div>
-          </md-card-header>
-        </md-card>
+  <div class="content" id="news-lists">
+    <div class="news-grid">
+      <p>Today</p>
+      <div class="md-layout">
+        <div
+          v-for="(n, i) in news"
+          :key="i"
+          @click="showDetail"
+          class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
+        >
+          <md-card>
+            <div class="md-card-header-image">
+              <img :src="n.image" alt="People" />
+            </div>
+            <md-card-content>
+              <h4 class="card-title">{{ n.title }}</h4>
+            </md-card-content>
+          </md-card>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.md-card {
-//   width: 320px;
-//   margin: 4px;
-  display: inline-block;
-  vertical-align: top;
-  .md-card-header {
-    background-color: transparent;
-    box-shadow: none;
-  }
-}
+<script>
+import padthai from '~/assets/img/news/padthai.jpg'
+import scare from '~/assets/img/news/scare.jpg'
+import champion from '~/assets/img/news/champion.jpg'
+import grouper from '~/assets/img/news/grouper.jpg'
 
-.md-card-example {
-  .md-subhead {
-    .md-icon {
-      $size: 16px;
-
-      width: $size;
-      min-width: $size;
-      height: $size;
-      font-size: $size !important;
+export default {
+  data () {
+    return {
+      news: [
+        {
+          title: "ผัดไทยไม่หวานแล้ว",
+          image: padthai,
+          description: "",
+          item: []
+        },
+        {
+          title: "ก่อนคำหวานจะคืนกลับมาหลอน",
+          image: scare,
+          description: "",
+          item: []
+        },
+        {
+          title: "แชมป์ปีแรกในรอบล้านปี",
+          image: scare,
+          description: "",
+          item: []
+        },
+        {
+          title: "ตกปลาเก๋าดับเพราะไม่เก๋าจริง",
+          image: grouper,
+          description: "",
+          item: []
+        }
+      ]
     }
-
-    span {
-      vertical-align: middle;
-    }
-  }
-
-  .card-reservation {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .md-icon {
-      margin: 8px;
-    }
-  }
-
-  .md-button-group {
-    display: flex;
-
-    .md-button {
-      min-width: 60px;
-      border-radius: 2px;
+  },
+  methods: {
+    showDetail () {
+      console.log('hi')
     }
   }
 }
+</script>
+
+<style lang="scss">
+  #news-lists {
+    .news-grid {
+      position: relative;
+    }
+  }
 </style>

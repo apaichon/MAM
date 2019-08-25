@@ -14,7 +14,6 @@
 
       <a
         href="/"
-        target="_blank"
         class="simple-text logo-normal"
       >
         {{ title }}

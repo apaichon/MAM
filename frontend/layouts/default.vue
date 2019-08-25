@@ -4,11 +4,11 @@
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/newslists">
         <i class="fas fa-newspaper"></i>
-        <p>All News</p>
+        <p>News</p>
       </sidebar-link>
-      <sidebar-link to="/dashboard">
+      <sidebar-link to="/media">
         <i class="fas fa-image"></i>
-        <p>All Media</p>
+        <p>Media</p>
       </sidebar-link>
     </side-bar>
 
@@ -17,8 +17,8 @@
       <transition name="fade" mode="out-in">
         <nuxt />
       </transition>
-      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
     </div>
+
   </div>
 </template>
 

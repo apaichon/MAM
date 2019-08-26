@@ -4,6 +4,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'more-news'
+}
+</script>
+
 <style lang="scss">
 #detailnews {
   width: 260px;

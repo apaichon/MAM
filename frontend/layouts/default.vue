@@ -18,15 +18,19 @@
         <nuxt />
       </transition>
     </div>
+
+    <more-news></more-news>
   </div>
 </template>
 
 <script>
 import MobileMenu from '~/layouts/MobileNavbar.vue'
+import MoreNews from '~/layouts/DetailNews.vue'
 
 export default {
   components: {
-    MobileMenu
+    MobileMenu,
+    MoreNews
   }
 }
 </script>

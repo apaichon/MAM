@@ -2,7 +2,7 @@ const feathers = require('@feathersjs/feathers')
 const express = require('@feathersjs/express')
 const cors = require('cors');
 
-import firebase  from './firebase'
+import firebase from './firebase'
 
 const app = express(feathers())
 app.use(cors({
@@ -20,11 +20,11 @@ class Messages {
     }]
   }
   async get(id, params) {
-     const message = await firebase.getMessage(id)
-      this.messages.message = message.docs.map(doc => {
-       return doc.data()
-     })
-     return this.messages.message
+    const message = await firebase.getMessage(id)
+    this.messages.message = message.docs.map(doc => {
+      return doc.data()
+    })
+    return this.messages.message
   }
   async update(id, data, params) {
     await firebase.updateMessage(data)
@@ -39,6 +39,8 @@ class Messages {
 }
 
 app.use('messages', new Messages())
+const { ProfileService } = require('./services/profile')
+app.use('profile', new ProfileService())
 
 app.service('messages').hooks({
   after: {

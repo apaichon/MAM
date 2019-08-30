@@ -10,6 +10,11 @@
     </div>
     <img :src="data.image" alt />
     <p>{{ data.description }}</p>
+    <div class="md-layout">
+      <div v-for="(images, img) in data.item" :key="img" class="item-news">
+        <img :src="images" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,11 +22,11 @@
 export default {
   name: "more-news",
   props: ["data"],
-  data () {
+  data() {
     return {
       // isActive: true
     };
-  },
+  }
   // mounted () {
   //   this.$parent.$on('toggleNnav', () => {
   //     console.log('toggle')
@@ -51,11 +56,20 @@ export default {
   }
 
   .md-button i {
-      color: #000000 !important;
+    color: #000000 !important;
   }
   .md-button:hover {
     background-color: transparent !important;
     box-shadow: none !important;
+  }
+  .item-news {
+    width: calc(33% - 6px);
+    // height: 10px;
+    background-color: grey;
+    margin: 3px;
+    img {
+      width: 100%;
+    }
   }
 }
 </style>

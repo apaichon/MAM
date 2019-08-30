@@ -15,14 +15,14 @@
             v-for="(n, i) in news"
             :key="i"
             @click="showDetail(n)"
-            class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
+            class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-20"
           >
             <news-item>
               <template slot="image">
                 <img :src="n.image" alt="People" />
               </template>
               <template slot="title">
-                <h4>{{ n.title }}</h4>
+                <h4>{{ n.id }}</h4>
                 <p>{{ n.date }}</p>
               </template>
             </news-item>
@@ -58,26 +58,30 @@ export default {
       detail: "",
       news: [
         {
-          title: "ผัดไทยไม่หวานแล้ว",
-          image: padthai,
+          id: "NB12345678-01",
+          title: "การผ่าตัดสุดสร้างสรรค์เกิดกับแมลงเต่าทอง",
+          image: 'https://img.icons8.com/color/50/000000/video.png',
           description: "",
           date: "12 Jan 2019"
         },
         {
-          title: "ก่อนคำหวานจะคืนกลับมาหลอน",
-          image: scare,
+          id: "NB12345678-02",
+          title: "การผ่าตัดสุดสร้างสรรค์เกิดกับแมลงเต่าทอง-1",
+          image: 'https://img.icons8.com/color/50/000000/video.png',
           description: "",
           date: "12 Jan 2019"
         },
         {
-          title: "แชมป์ปีแรกในรอบล้านปี",
-          image: scare,
+          id: "NB12345678-03",
+          title: "การผ่าตัดสุดสร้างสรรค์เกิดกับแมลงเต่าทอง-2",
+          image: 'https://img.icons8.com/color/50/000000/video.png',
           description: "",
           date: "12 Jan 2019"
         },
         {
-          title: "ตกปลาเก๋าดับเพราะไม่เก๋าจริง",
-          image: grouper,
+          id: "NB12345678-04",
+          title: "การผ่าตัดสุดสร้างสรรค์เกิดกับแมลงเต่าทอง-3",
+          image: 'https://img.icons8.com/color/50/000000/video.png',
           description: "",
           date: "12 Jan 2019"
         }

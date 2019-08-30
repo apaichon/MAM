@@ -23,6 +23,11 @@
               </template>
               <template slot="title">
                 <h4>{{ n.title }}</h4>
+                <div class="md-layout">
+                  <div v-for="(images, img) in n.item"  :key="img" class="item-news">
+                    <img :src="images" v-if="img < 5" />
+                  </div>
+                </div>
               </template>
             </news-item>
           </div>
@@ -61,25 +66,47 @@ export default {
           title: "ผัดไทยไม่หวานแล้ว",
           image: padthai,
           description: "ผัดไทยไม่หวานแล้ว",
-          item: []
+          item: [
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png"
+          ]
         },
         {
           title: "ก่อนคำหวานจะคืนกลับมาหลอน",
           image: scare,
           description: "",
-          item: []
+          item: [
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png"
+          ]
         },
         {
           title: "แชมป์ปีแรกในรอบล้านปี",
           image: scare,
           description: "",
-          item: []
+          item: [
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png"
+          ]
         },
         {
           title: "ตกปลาเก๋าดับเพราะไม่เก๋าจริง",
           image: grouper,
           description: "",
-          item: []
+          item: [
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png",
+            "https://img.icons8.com/ios-filled/50/000000/video.png"
+          ]
         }
       ]
     };
@@ -90,12 +117,12 @@ export default {
       // console.log(this.$parent)
       // this.$parent.$emit("toggleNav");
       // this.isActive = !this.isActive
-      if ( this.isActive === false ) {
-        this.isActive = !this.isActive
+      if (this.isActive === false) {
+        this.isActive = !this.isActive;
       }
     },
     hideDetail() {
-      this.isActive = false 
+      this.isActive = false;
     }
   }
 };
@@ -108,6 +135,12 @@ export default {
   .md-layout-item {
     padding-top: 15px;
     padding-bottom: 15px;
+  }
+  .item-news {
+    width: calc(33% - 6px);
+    // height: 10px;
+    background-color: grey;
+    margin: 3px;
   }
 }
 </style>

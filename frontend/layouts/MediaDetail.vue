@@ -2,13 +2,14 @@
   <div id="detailnews">
     <div class="md-layout">
       <div class="md-layout-item md-size-70">
-        <h5>{{ data.title }}</h5>
+        <h5>{{ data.id }}</h5>
       </div>
       <div class="md-layout-item md-size-20">
         <slot name="close"></slot>
       </div>
     </div>
     <img :src="data.image" alt />
+    <h5>{{ data.title }}</h5>
     <p>{{ data.description }}</p>
     <p>{{ data.date }}</p>
   </div>
@@ -18,11 +19,11 @@
 export default {
   name: "more-media",
   props: ["data"],
-  data () {
+  data() {
     return {
       // isActive: true
     };
-  },
+  }
   // mounted () {
   //   this.$parent.$on('toggleNnav', () => {
   //     console.log('toggle')
@@ -42,6 +43,9 @@ export default {
   &.active {
     display: block;
   }
+  img {
+    width: 100%;
+  }
   .md-button {
     background-color: transparent !important;
     box-shadow: none !important;
@@ -52,7 +56,7 @@ export default {
   }
 
   .md-button i {
-      color: #000000 !important;
+    color: #000000 !important;
   }
   .md-button:hover {
     background-color: transparent !important;

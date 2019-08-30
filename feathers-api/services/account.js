@@ -1,10 +1,10 @@
 const uuid = require('uuid/v4')
 const { BadRequest, NotFound } = require('@feathersjs/errors')
 
-module.exports = class ProfileService {
+module.exports = class AccountService {
   constructor({ firestore }) {
     this._db = firestore
-    this._collection = 'profile'
+    this._collection = 'account'
   }
 
   get db() {
@@ -16,21 +16,21 @@ module.exports = class ProfileService {
   }
 
   async get(id, params) {
-    const profile = []
+    const account = []
 
     const snapshot = await this.db.collection(this.collection)
       .where('email', '==', id)
       .get()
 
     if (snapshot.empty) {
-      throw new NotFound('Profile does not exists.', id)
+      throw new NotFound('Account does not exists.', id)
     }
 
     snapshot.forEach(doc => {
-      profile.push(doc.data())
+      account.push(doc.data())
     })
 
-    return profile.shift()
+    return account.shift()
   }
 
   async create(data, params) {
@@ -49,7 +49,7 @@ module.exports = class ProfileService {
   async update(id, data, params) {
     const snapshot = await this.db.collection(this.collection).where('email', '==', id).get()
     if (snapshot.empty) {
-      throw new NotFound('Profile does not exists.', id)
+      throw new NotFound('Account does not exists.', id)
     }
 
     let ref;

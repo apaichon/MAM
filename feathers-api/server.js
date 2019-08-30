@@ -3,7 +3,7 @@ const express = require('@feathersjs/express')
 const cors = require('cors');
 
 import firebase from './firebase'
-import profileService from './services/profile'
+import services from './services'
 
 const app = express(feathers())
 app.use(cors({
@@ -58,9 +58,9 @@ app.service('messages').hooks({
   }
 })
 
-profileService.register(app)
-
+services.register(app)
 app.use(express.errorHandler())
+
 
 const server = app.listen(3032)
 

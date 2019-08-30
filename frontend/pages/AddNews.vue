@@ -83,9 +83,8 @@ export default {
   },
   data() {
     return {
-      news_title: "",
-      limit_sale: false
-    };
+      news_title: ""
+    }
   }
 };
 </script>

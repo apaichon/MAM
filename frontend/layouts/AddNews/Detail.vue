@@ -12,7 +12,7 @@
       <md-field>
         <label for="category">News Category</label>
         <md-select name="category" id="category" class="md-info">
-          <md-option value="fight-club">item1</md-option>
+          <md-option  value="fight-club">item1</md-option>
           <md-option value="godfather">item2</md-option>
           <md-option value="godfather-ii">item3</md-option>
         </md-select>

@@ -12,9 +12,14 @@
         </md-select>
       </md-field>
       <div>
-        <md-radio value="accent">Forever</md-radio>
-        <md-radio value="Primary" class="md-primary">Before 6PM</md-radio>
-        <md-radio value="Primary" class="md-primary">Before 5PM</md-radio>
+        <md-radio 
+          v-model="time" 
+          v-for="(t, i) in time_list" 
+          :value="t" 
+          :key="i"
+        >
+          {{ t.text }}
+        </md-radio>
       </div>
       <md-field>
         <label for="category">Term of Usage</label>
@@ -40,7 +45,13 @@ export default {
   name: "sale-condition",
   data() {
     return {
-      limit_sale: false
+      limit_sale: false,
+      time: "forever",
+      time_list: [
+        { value: "forever", text: "Forever" },
+        { value: "before6pm", text: "Before 6PM" },
+        { value: "before5pm", text: "Before 5PM" }
+      ]
     };
   }
 };

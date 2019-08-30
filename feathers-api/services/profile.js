@@ -1,14 +1,26 @@
-const { BadRequest, NotFound } = require('@feathersjs/errors')
-const uuid = require('uuid/v4')
 const admin = require('firebase-admin')
-admin.initializeApp({
-  credential: admin.credential.cert(require('../config/firebase-admin.json'))
-})
-const db = admin.firestore()
+const uuid = require('uuid/v4')
+const { BadRequest, NotFound } = require('@feathersjs/errors')
 
 class ProfileService {
   constructor() {
     this._collection = 'profile'
+
+    try {
+      const adminConfig = require('../config/firebase-admin.json')
+      admin.initializeApp({
+        credential: admin.credential.cert(adminConfig)
+      })
+      this._db = admin.firestore()
+    } catch (error) {
+      console.log('## Profile Service Error')
+      console.log('||', error.message)
+      console.log('##', 'Other services will still working')
+    }
+  }
+
+  get db() {
+    return this._db
   }
 
   get collection() {
@@ -18,7 +30,7 @@ class ProfileService {
   async get(id, params) {
     const profile = []
 
-    const snapshot = await db.collection(this.collection)
+    const snapshot = await this.db.collection(this.collection)
       .where('email', '==', id)
       .get()
 
@@ -34,7 +46,7 @@ class ProfileService {
   }
 
   async create(data, params) {
-    const snapshot = await db.collection(this.collection)
+    const snapshot = await this.db.collection(this.collection)
       .where('email', '==', data.email)
       .get()
 
@@ -42,12 +54,12 @@ class ProfileService {
       throw new BadRequest('Duplicate email found.', data)
     }
 
-    await db.collection(this.collection).doc(uuid()).set(data)
+    await this.db.collection(this.collection).doc(uuid()).set(data)
     return data
   }
 
   async update(id, data, params) {
-    const snapshot = await db.collection(this.collection).where('email', '==', id).get()
+    const snapshot = await this.db.collection(this.collection).where('email', '==', id).get()
     if (snapshot.empty) {
       throw new NotFound('Profile does not exists.', id)
     }
@@ -57,7 +69,7 @@ class ProfileService {
       ref = doc.id
     })
 
-    await db.collection(this.collection).doc(ref).update(data)
+    await this.db.collection(this.collection).doc(ref).update(data)
     return data
   }
 

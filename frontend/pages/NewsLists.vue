@@ -91,7 +91,7 @@ export default {
         {
           title: "แชมป์ปีแรกในรอบล้านปี",
           image: scare,
-          description: "",
+          description: "ซิมวิวอัลบั้มเซรามิก เก๋ากี้ ไฟต์ฟลอร์แชมเปญ ภารตะแคมป์ล้มเหลวซูฮกโรลออน โอเปร่า ออทิสติก แพนด้าแอปเปิ้ล ภควัมปติ ควีนมวลชนเชอร์รี่ นาฏยศาลา อันเดอร์ลิมูซีนจัมโบ้ ไมค์ซิตี้คอปเตอร์ป๋า",
           item: [
             "https://img.icons8.com/ios-filled/50/000000/video.png",
             "https://img.icons8.com/ios-filled/50/000000/video.png",

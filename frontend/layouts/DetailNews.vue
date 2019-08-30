@@ -71,5 +71,8 @@ export default {
       width: 100%;
     }
   }
+  p {
+    padding: 1em 0;
+  }
 }
 </style>

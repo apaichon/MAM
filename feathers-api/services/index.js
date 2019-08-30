@@ -9,7 +9,6 @@ module.exports = {
   register(app) {
     const path = require('path');
     const fs = require('fs');
-    // const services = [];
 
     for (const filename of fs.readdirSync(__dirname)) {
       if (filename === path.basename(__filename))

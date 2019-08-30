@@ -18,7 +18,10 @@ class ProfileService {
   async get(id, params) {
     const profile = []
 
-    const snapshot = await db.collection(this.collection).where('email', '==', id).get()
+    const snapshot = await db.collection(this.collection)
+      .where('email', '==', id)
+      .get()
+
     if (snapshot.empty) {
       throw new NotFound('Profile does not exists.', id)
     }
@@ -42,15 +45,30 @@ class ProfileService {
     await db.collection(this.collection).doc(uuid()).set(data)
     return data
   }
-}
 
-module.exports = {
-  register(app) {
-    app.use('profile', new ProfileService())
-    app.service('profile').hooks({
+  async update(id, data, params) {
+    const snapshot = await db.collection(this.collection).where('email', '==', id).get()
+    if (snapshot.empty) {
+      throw new NotFound('Profile does not exists.', id)
+    }
+
+    let ref;
+    snapshot.forEach(doc => {
+      ref = doc.id
+    })
+
+    await db.collection(this.collection).doc(ref).update(data)
+    return data
+  }
+
+  static get hooks() {
+    return {
       before: {
         create: [async ctx => {
-          ctx.data.createdAt = new Date()
+          ctx.data.createdAt = new Date().toJSON()
+        }],
+        update: [async ctx => {
+          ctx.data.updatedAt = new Date().toJSON()
         }]
       },
       error: {
@@ -59,6 +77,13 @@ module.exports = {
           delete ctx.error.errors
         }]
       }
-    })
+    }
+  }
+}
+
+module.exports = {
+  register(app) {
+    app.use('profile', new ProfileService())
+    app.service('profile').hooks(ProfileService.hooks)
   }
 }

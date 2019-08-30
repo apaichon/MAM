@@ -1,9 +1,9 @@
 const feathers = require('@feathersjs/feathers')
 const express = require('@feathersjs/express')
 const cors = require('cors');
-const profileService = require('./services/profile')
 
 import firebase from './firebase'
+import profileService from './services/profile'
 
 const app = express(feathers())
 app.use(cors({

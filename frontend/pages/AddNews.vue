@@ -2,7 +2,10 @@
   <div class="content" id="addnews">
     <div class="md-layout">
       <div class="md-layout-item">
-        <p>Add news :No news related <a href="/">Add ralated news</a></p>
+        <p>
+          Add news :No news related
+          <a href="/">Add ralated news</a>
+        </p>
       </div>
       <div class="md-layout-item text-right">
         <md-button>Save Draft</md-button>
@@ -99,17 +102,18 @@
           </template>
           <template slot="content">
             <p class="category">Video Upload</p>
-            <md-field>
-              <label>Title</label>
-              <md-input></md-input>
-            </md-field>
-            <md-field>
-              <label>Video files</label>
-              <md-file accept="video/*" />
-            </md-field>
-            <md-button>
-              <md-icon>add</md-icon>
-              Add Video
+            <div v-for="(videos, i) in video_list" :key="i">
+              <md-field>
+                <label>Title</label>
+                <md-input v-model="videos.title"></md-input>
+              </md-field>
+              <md-field>
+                <label>Video files</label>
+                <md-file v-model="videos.file" accept="video/*" />
+              </md-field>
+            </div>
+            <md-button @click="createNewVideo">
+              <md-icon>add</md-icon>Add Video
             </md-button>
           </template>
         </standard-card>
@@ -121,17 +125,18 @@
           </template>
           <template slot="content">
             <p class="category">Image Upload</p>
-            <md-field>
-              <label>Title</label>
-              <md-input></md-input>
-            </md-field>
-            <md-field>
-              <label>Image files</label>
-              <md-file accept="image/*" />
-            </md-field>
-            <md-button>
-              <md-icon>add</md-icon>
-              Add Image
+            <div v-for="(images, i) in image_list" :key="i">
+              <md-field>
+                <label>Title</label>
+                <md-input v-model="images.title"></md-input>
+              </md-field>
+              <md-field>
+                <label>Image files</label>
+                <md-file v-model="images.file" accept="image/*" />
+              </md-field>
+            </div>
+            <md-button @click="createNewImage">
+              <md-icon>add</md-icon>Add Image
             </md-button>
           </template>
         </standard-card>
@@ -139,23 +144,24 @@
     </div>
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
-        <standard-card data-background-color="green">
+        <standard-card data-background-color="blue">
           <template slot="header">
             <i class="far fa-file-alt"></i>
           </template>
           <template slot="content">
             <p class="category">File Article Upload</p>
-            <md-field>
-              <label>Title</label>
-              <md-input></md-input>
-            </md-field>
-            <md-field>
-              <label>Article files</label>
-              <md-file />
-            </md-field>
-            <md-button>
-              <md-icon>add</md-icon>
-              Add Article
+            <div v-for="(articles, i) in article_list" :key="i">
+              <md-field>
+                <label>Title</label>
+                <md-input v-model="articles.title"></md-input>
+              </md-field>
+              <md-field>
+                <label>Article files</label>
+                <md-file v-model="articles.file" />
+              </md-field>
+            </div>
+            <md-button @click="createNewFileArticle">
+              <md-icon>add</md-icon>Add Article
             </md-button>
           </template>
         </standard-card>
@@ -185,7 +191,7 @@
 </template>
 
 <script>
-import StandardCard from '~/components/Card/StandardCard.vue'
+import StandardCard from "~/components/Card/StandardCard.vue";
 
 export default {
   components: {
@@ -194,14 +200,57 @@ export default {
   props: {
     dataBackgroundColor: {
       type: String,
-      default: ''
+      default: ""
+    }
+  },
+  data() {
+    return {
+      news_title: "",
+      video: "",
+      video_list: [
+        {
+          id: 1,
+          title: "",
+          file: ""
+        }
+      ],
+      image: "",
+      image_list: [
+        {
+          id: 1,
+          title: "",
+          file: ""
+        }
+      ],
+      article: "",
+      article_list: [
+        {
+          id: 1,
+          title: "",
+          file: ""
+        }
+      ]
+    };
+  },
+  methods: {
+    createNewVideo () {
+      const newId = Math.max.apply(null, this.video_list.map(t => t.id)) + 1;
+      this.video_list.push({ id: newId, title: '', file: '' });
+    },
+    createNewImage () {
+      const newId = Math.max.apply(null, this.image_list.map(t => t.id)) + 1;
+      this.image_list.push({ id: newId, title: '', file: '' });
+    },
+    createNewFileArticle  () {
+      const newId = Math.max.apply(null, this.article_list.map(t => t.id)) + 1;
+      this.article_list.push({ id: newId, title: '', file: '' });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  #search {
-    display: none;
-  }
+#search {
+  display: none;
+}
 </style>

@@ -22,9 +22,9 @@
                 <img :src="n.image" alt="People" />
               </template>
               <template slot="title">
-                <h4>{{ n.title }}</h4>
+                <div class="el">{{ n.title }}</div>
                 <div class="md-layout">
-                  <div v-for="(images, img) in n.item"  :key="img" class="item-news">
+                  <div v-for="(images, img) in n.item" :key="img" class="item-news">
                     <img :src="images" v-if="img < 5" />
                   </div>
                 </div>

@@ -47,9 +47,15 @@
   .main-list {
     width: 100vw;
   }
-  h4 {
+  .el {
+    padding: 1em 0;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 16px;
   }
+
   .md-button {
     // background-color: transparent !important;
     // box-shadow: none !important;

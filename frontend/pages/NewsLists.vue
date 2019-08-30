@@ -60,7 +60,7 @@ export default {
         {
           title: "ผัดไทยไม่หวานแล้ว",
           image: padthai,
-          description: "",
+          description: "ผัดไทยไม่หวานแล้ว",
           item: []
         },
         {
@@ -89,25 +89,19 @@ export default {
       this.detail = data;
       // console.log(this.$parent)
       // this.$parent.$emit("toggleNav");
-      this.isActive = !this.isActive
+      // this.isActive = !this.isActive
+      if ( this.isActive === false ) {
+        this.isActive = !this.isActive
+      }
     },
     hideDetail() {
-      this.newsSide = false;
+      this.isActive = false 
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-#news-lists {
-  display: flex;
-  .main-list {
-    // display: flex;
-    // align-items: stretch;
-    // flex-direction: column;
-    width: 100vw;
-  }
-}
 .content {
   padding-top: 0;
   padding-bottom: 0;

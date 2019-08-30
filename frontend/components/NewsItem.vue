@@ -1,12 +1,4 @@
 <template>
-  <!-- <md-card>
-    <div class="md-card-header-image">
-      <slot name="header"></slot>
-    </div>
-    <md-card-content>
-      <slot name="title" class="card-title"></slot>
-    </md-card-content>
-  </md-card> -->
   <md-card>
       <md-card-media>
         <slot name="image"></slot>

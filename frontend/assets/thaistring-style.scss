@@ -43,8 +43,20 @@
 }
 
 #news-lists {
+  display: flex;
+  .main-list {
+    width: 100vw;
+  }
   h4 {
     font-size: 16px;
+  }
+  .md-button {
+    // background-color: transparent !important;
+    // box-shadow: none !important;
+    color: #000000 !important;
+    i {
+      color: #000000 !important;
+    }
   }
   .news-grid {
     position: relative;

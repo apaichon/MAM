@@ -10,12 +10,13 @@
     </div>
     <img :src="data.image" alt />
     <p>{{ data.description }}</p>
+    <p>{{ data.date }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "more-news",
+  name: "more-media",
   props: ["data"],
   data () {
     return {

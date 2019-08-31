@@ -1,6 +1,6 @@
 <template>
   <div class="change-password-container">
-    <md-card style="width: 500px;">
+    <md-card style="max-width: 600px;">
       <md-card-header data-background-color="purple">
         <h4 class="title">Change Password</h4>
         <p class="category">It's time to change</p>

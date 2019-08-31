@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container">
-    <md-card style="width: 500px;">
+    <md-card style="max-width: 600px;">
       <md-card-header data-background-color="blue">
         <h4 class="title">Edit Profile</h4>
         <p class="category">Complete your profile</p>

@@ -55,7 +55,7 @@
                 <md-icon>notifications</md-icon>
               </md-button>
             </md-badge>-->
-            <md-list-item href="/setting">
+            <md-list-item to="/changepassword">
               <i class="material-icons">settings</i>
               <p class="hidden-lg hidden-md">Setting</p>
             </md-list-item>

@@ -43,6 +43,8 @@ module.exports = class AccountService {
       throw new BadRequest('Duplicate email found.', data)
     }
 
+    data.password = bcrypt.hashSync(data.password, 10)
+
     await this.db.collection(this.collection).doc(uuid()).set(data)
     return data
   }
@@ -79,8 +81,6 @@ module.exports = class AccountService {
         updatedAt: data.updatedAt
       })
 
-      delete data.oldPassword
-      delete data.newPassword
       return data
     }
 
@@ -97,10 +97,20 @@ module.exports = class AccountService {
           ctx.data.updatedAt = new Date().toJSON()
         }]
       },
+      after: {
+        all: [async ctx => {
+          if (ctx.data.password) delete ctx.data.password
+          if (ctx.data.oldPassword) delete ctx.data.oldPassword
+          if (ctx.data.newPassword) delete ctx.data.newPassword
+        }]
+      },
       error: {
         all: [ctx => {
-          delete ctx.error.className
-          delete ctx.error.errors
+          if (ctx.error.className) delete ctx.error.className
+          if (ctx.error.errors) delete ctx.error.errors
+          if (ctx.error.data.password) delete ctx.error.data.password
+          if (ctx.error.data.oldPassword) delete ctx.error.data.oldPassword
+          if (ctx.error.data.newPassword) delete ctx.error.data.newPassword
         }]
       }
     }

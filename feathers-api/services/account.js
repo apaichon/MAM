@@ -99,9 +99,9 @@ module.exports = class AccountService {
       },
       after: {
         all: [async ctx => {
-          if (ctx.data.password) delete ctx.data.password
-          if (ctx.data.oldPassword) delete ctx.data.oldPassword
-          if (ctx.data.newPassword) delete ctx.data.newPassword
+          if (ctx.data && ctx.data.password) delete ctx.data.password
+          if (ctx.data && ctx.data.oldPassword) delete ctx.data.oldPassword
+          if (ctx.data && ctx.data.newPassword) delete ctx.data.newPassword
         }]
       },
       error: {

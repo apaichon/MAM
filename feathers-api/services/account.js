@@ -1,5 +1,6 @@
 const uuid = require('uuid/v4')
 const { BadRequest, NotFound } = require('@feathersjs/errors')
+const bcrypt = require('bcrypt')
 
 module.exports = class AccountService {
   constructor({ firestore }) {
@@ -53,12 +54,37 @@ module.exports = class AccountService {
     }
 
     let ref;
+    let account;
     snapshot.forEach(doc => {
       ref = doc.id
+      account = doc.data()
     })
 
-    await this.db.collection(this.collection).doc(ref).update(data)
-    return data
+    if (params.query.module === 'changePassword') {
+      if (!data.oldPassword) {
+        throw new BadRequest('Please insert your old password (oldPassword).', data)
+      }
+
+      if (!bcrypt.compareSync(data.oldPassword, account.password)) {
+        throw new BadRequest('Password mismatch (oldPassword).', data)
+      }
+
+      if (!data.newPassword) {
+        throw new BadRequest('Please insert your new password (newPassword).', data)
+      }
+
+      const hash = bcrypt.hashSync(data.newPassword, 10)
+      await this.db.collection(this.collection).doc(ref).update({
+        password: hash,
+        updatedAt: data.updatedAt
+      })
+
+      delete data.oldPassword
+      delete data.newPassword
+      return data
+    }
+
+    throw new BadRequest('Invalid module.', params.query)
   }
 
   static get hooks() {

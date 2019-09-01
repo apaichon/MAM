@@ -23,7 +23,6 @@ module.exports = (app) => {
     const serviceName = filename.replace(/\.[0-9a-z]+$/i, '')
     const service = require('./' + serviceName)
     app.use(serviceName, new service({ firestore }))
-
     if (service.hooks)
       app.service(serviceName).hooks(service.hooks)
   }

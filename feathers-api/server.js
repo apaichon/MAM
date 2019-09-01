@@ -57,8 +57,7 @@ app.service('messages').hooks({
     ]
   }
 })
-
-services.register(app)
+app.configure(services)
 app.use(express.errorHandler())
 
 

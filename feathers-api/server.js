@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true }))
 app.configure(express.rest())
 app.use(express.errorHandler())
 app.configure(services)
-app.use(express.errorHandler())
 
 const server = app.listen(3032)
 

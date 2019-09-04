@@ -8,19 +8,40 @@ module.exports = function (app) {
   const postgreSql = sequelizeClient.define('notification', {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    text: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true,
+      primaryKey: true,
+      autoIncrement: true
     },
     createdAt: {
       type: DataTypes.TIME,
-      allowNull: false
+      allowNull: true
     },
     updatedAt: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    humanDate: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    idRead: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    message: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    sender: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    subject: {
+      type: DataTypes.TEXT,
       allowNull: false
     }
   }, {

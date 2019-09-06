@@ -1,6 +1,6 @@
 <template>
   <div class="change-password-container">
-    <md-card style="width: 500px;">
+    <md-card style="max-width: 600px;">
       <md-card-header data-background-color="purple">
         <h4 class="title">Change Password</h4>
         <p class="category">It's time to change</p>
@@ -51,7 +51,11 @@ import axios from "axios";
 import https from "https";
 
 export default {
-  props: ["email"],
+  props: {
+    email: {
+      type: String
+    }
+  },
   data() {
     return {
       account: {},
@@ -67,23 +71,10 @@ export default {
   methods: {
     getAccount() {
       axios({
-        method: "post",
-        url: process.env.baseUrl,
-        headers: {
-          "Content-Type": "application/json",
-          application: "Thai Stringers",
-          objectfile: "../../biz/AccountBiz",
-          objectname: "AccountBiz",
-          objectmethod: "FindOne"
-        },
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        }),
-        data: {
-          filter: ["email", "==", this.email]
-        }
+        method: "get",
+        url: process.env.baseUrl + "/account/" + this.email
       }).then(({ data }) => {
-        this.account = data.data.shift();
+        this.account = data;
         this.cardLoaded();
         this.$refs.currentPassword.$el.focus();
       });
@@ -110,50 +101,35 @@ export default {
 
       this.cardLoading();
       axios({
-        method: "post",
-        url: process.env.baseUrl,
-        headers: {
-          "Content-Type": "application/json",
-          application: "Thai Stringers",
-          objectfile: "../../biz/AccountBiz",
-          objectname: "AccountBiz",
-          objectmethod: "ChangePassword"
-        },
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        }),
+        method: "put",
+        url:
+          process.env.baseUrl +
+          "/account/" +
+          this.email +
+          "?module=changePassword",
         data: {
-          condition: ["email", "==", this.email],
-          data: {
-            oldPassword: this.currentPassword,
-            newPassword: this.newPassword
-          }
+          oldPassword: this.currentPassword,
+          newPassword: this.newPassword
         }
-      }).then(({ data }) => {
-        if (
-          data.code !== 200 &&
-          data.message === "Current password is not match!"
-        ) {
-          alert(data.message);
-          this.$refs.currentPassword.$el.focus();
-        } else {
-          alert("เปลี่ยนรหัสผ่านสำเร็จ");
-          this.currentPassword = "";
-          this.newPassword = "";
-          this.confirmPassword = "";
-        }
+      }).then(({ status, data }) => {
+        alert("เปลี่ยนรหัสผ่านสำเร็จ");
+        this.currentPassword = "";
+        this.newPassword = "";
+        this.confirmPassword = "";
         this.cardLoaded();
+      }).catch(({ response }) => {
+        alert(response.data.message || 'Something wrong happened.')
+        this.cardLoaded();
+        this.$refs.currentPassword.$el.focus();
       });
     },
     cardLoading() {
-      const loader = this.$refs.loader;
-      loader.style.opacity = 1;
-      loader.style.visibility = "visible";
+      this.$refs.loader.style.visibility = "visible";
+      this.$refs.loader.style.opacity = 1;
     },
     cardLoaded() {
-      const loader = this.$refs.loader;
-      loader.style.opacity = 0;
-      loader.style.visibility = "hidden";
+      this.$refs.loader.style.visibility = "hidden";
+      this.$refs.loader.style.opacity = 0;
     }
   }
 };

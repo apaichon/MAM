@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container">
-    <md-card style="width: 500px;">
+    <md-card style="max-width: 600px;">
       <md-card-header data-background-color="blue">
         <h4 class="title">Edit Profile</h4>
         <p class="category">Complete your profile</p>
@@ -15,8 +15,8 @@
               @mouseleave="hideChangeImage"
               @click="changeProfileImage"
             >
-              <div id="profile-image">
-                <span class="change-profile-image">Change</span>
+              <div ref="profileImage">
+                <span ref="changeProfileImage" class="change-profile-image">Change</span>
               </div>
             </div>
           </div>
@@ -70,7 +70,15 @@ import axios from "axios";
 import https from "https";
 
 export default {
-  props: ["email"],
+  props: {
+    email: {
+      type: String
+    },
+    avatar: {
+      type: String,
+      default: require("~/assets/img/avatar.png")
+    }
+  },
   data() {
     return { profile: {} };
   },
@@ -80,35 +88,22 @@ export default {
   mounted() {},
   methods: {
     showChangeImage() {
-      const el = document.querySelector(".change-profile-image");
+      const el = this.$refs.changeProfileImage;
       el.style.opacity = 1;
     },
     hideChangeImage() {
-      const el = document.querySelector(".change-profile-image");
+      const el = this.$refs.changeProfileImage;
       el.style.opacity = 0;
     },
     getProfile() {
       axios({
-        method: "post",
-        url: process.env.baseUrl,
-        headers: {
-          "Content-Type": "application/json",
-          application: "Thai Stringers",
-          objectfile: "../../biz/ProfileBiz",
-          objectname: "ProfileBiz",
-          objectmethod: "FindOne"
-        },
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        }),
-        data: {
-          filter: ["email", "==", this.email]
-        }
+        method: "get",
+        url: process.env.baseUrl + "/profile/" + this.email
       }).then(({ data }) => {
-        this.profile = data.data.shift();
-        document.querySelector(
-          "#profile-image"
-        ).style.backgroundImage = `url(${this.profile.photo})`;
+        this.profile = data;
+        this.$refs.profileImage.style.backgroundImage = `url(${this.profile.photo || this.avatar})`;
+        this.$refs.profileImage.style.backgroundSize = `cover`;
+        this.$refs.profileImage.style.height = '200px';
         this.cardLoaded();
       });
     },
@@ -116,31 +111,16 @@ export default {
       e.preventDefault();
       this.cardLoading();
 
-      const reqBody = {
-        condition: ["id", "==", this.profile.id],
+      axios({
+        method: "put",
+        url: process.env.baseUrl + "/profile/" + this.email,
         data: {
           firstName: this.profile.firstName,
           lastName: this.profile.lastName,
           mobileNo: this.profile.mobileNo
         }
-      };
-
-      axios({
-        method: "post",
-        url: process.env.baseUrl,
-        headers: {
-          "Content-Type": "application/json",
-          application: "Thai Stringers",
-          objectfile: "../../biz/ProfileBiz",
-          objectname: "ProfileBiz",
-          objectmethod: "Edit"
-        },
-        httpsAgent: new https.Agent({
-          rejectUnauthorized: false
-        }),
-        data: reqBody
-      }).then(({ data }) => {
-        if (data.code === 200) alert("อัพเดทสำเร็จ");
+      }).then(({ status }) => {
+        if (status === 200) alert("อัพเดทสำเร็จ");
         else alert("อัพเดทไม่สำเร็จ");
         this.cardLoaded();
       });

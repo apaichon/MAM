@@ -54,7 +54,7 @@
               <i class="material-icons">settings</i>
               <p class="hidden-lg hidden-md">Setting</p>
             </md-list-item>
-            <md-list-item href="/user">
+            <md-list-item to="/profile">
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
             </md-list-item>

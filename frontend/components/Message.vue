@@ -12,8 +12,10 @@
                   ข้อความ
               </div>
             <div class="md-toolbar-section-end">
+              <div>
+              </div>
               <md-button @click="deleteMessage" data-background-color="red"   class="md-icon-button" style="margin-right:10px;">
-                    <md-icon>delete</md-icon>
+                <md-icon>delete</md-icon>
               </md-button>
               <md-button @click="menuVisible = false"  data-background-color="orange" class="md-icon-button">
                 <md-icon>close</md-icon>

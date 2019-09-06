@@ -1,9 +1,9 @@
 <template>
-  <md-toolbar md-elevation="0" class="md-transparent">
+  <md-toolbar md-elevation="0" class="md-transparent" id="top-navbar">
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-start">
         <h3 class="md-title">{{ $route.name }}</h3>
-        <div class="md-layout" id="select-on-topbar">
+        <!-- <div class="md-layout" id="select-on-topbar">
           <div class="md-layout-item md-size-50">
             <md-field>
               <label for="movie">Thumbnail view</label>
@@ -23,7 +23,7 @@
               </md-select>
             </md-field>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -50,12 +50,7 @@
               <i class="material-icons">notifications</i>
               <p class="hidden-lg hidden-md">Notification</p>
             </md-list-item>
-            <!-- <md-badge md-content="1">
-              <md-button class="md-icon-button">
-                <md-icon>notifications</md-icon>
-              </md-button>
-            </md-badge>-->
-            <md-list-item to="/changepassword">
+            <md-list-item href="/setting">
               <i class="material-icons">settings</i>
               <p class="hidden-lg hidden-md">Setting</p>
             </md-list-item>
@@ -66,13 +61,6 @@
           </md-list>
         </div>
       </div>
-    </div>
-    <div class="md-toolbar-row">
-      <md-field>
-        <md-icon>search</md-icon>
-        <label>Search news</label>
-        <md-input></md-input>
-      </md-field>
     </div>
   </md-toolbar>
 </template>
@@ -101,38 +89,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-#select-on-topbar {
-  .md-field:not(.md-disabled):after,
-  div.md-field:not(.md-disabled):after,
-  .md-field:before {
-    background-color: transparent !important;
-  }
-
-  .md-field {
-    label {
-      top: 23px;
-      bottom: 0;
-    }
-  }
-
-  .md-field.md-focused,
-  .md-field.md-has-value {
-    label {
-      top: 0;
-    }
-  }
-}
-
-#btn-add-news {
-  border-radius: 50px;
-
-  .md-list-item-container .md-ripple {
-    i,
-    p {
-      margin: 0;
-    }
-  }
-}
-</style>

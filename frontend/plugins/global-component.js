@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import TopNavbar from '../layouts/TopNavbar'
-import MobileNavbar from '../layouts/MobileNavbar'
+// import MobileNavbar from '../layouts/MobileNavbar'
 import ContentFooter from '../layouts/ContentFooter'
 import MoreNews from '../layouts/DetailNews'
 import Sidebar from '../components/SidebarPlugin/SideBar'
@@ -17,7 +17,7 @@ Vue.component("more-news", MoreNews)
 Vue.component("side-bar", Sidebar)
 Vue.component("sidebar-link", SidebarLink)
 Vue.component('top-navbar', TopNavbar)
-Vue.component('mobile-menu', MobileNavbar)
+// Vue.component('mobile-menu', MobileNavbar)
 Vue.component('content-footer', ContentFooter)
 Vue.component('chart-card', ChartCard)
 Vue.component('stats-card', StatsCard)

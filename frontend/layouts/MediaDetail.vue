@@ -2,25 +2,22 @@
   <div id="detailnews">
     <div class="md-layout">
       <div class="md-layout-item md-size-70">
-        <h5>{{ data.title }}</h5>
+        <h5>{{ data.id }}</h5>
       </div>
       <div class="md-layout-item md-size-20">
         <slot name="close"></slot>
       </div>
     </div>
     <img :src="data.image" alt />
+    <h5>{{ data.title }}</h5>
     <p>{{ data.description }}</p>
-    <div class="md-layout">
-      <div v-for="(images, img) in data.item" :key="img" class="item-news">
-        <img :src="images" />
-      </div>
-    </div>
+    <p>{{ data.date }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "more-news",
+  name: "more-media",
   props: ["data"],
   data() {
     return {
@@ -46,6 +43,9 @@ export default {
   &.active {
     display: block;
   }
+  img {
+    width: 100%;
+  }
   .md-button {
     background-color: transparent !important;
     box-shadow: none !important;
@@ -61,18 +61,6 @@ export default {
   .md-button:hover {
     background-color: transparent !important;
     box-shadow: none !important;
-  }
-  .item-news {
-    width: calc(33% - 6px);
-    // height: 10px;
-    background-color: grey;
-    margin: 3px;
-    img {
-      width: 100%;
-    }
-  }
-  p {
-    padding: 1em 0;
   }
 }
 </style>

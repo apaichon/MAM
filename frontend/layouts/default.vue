@@ -6,7 +6,7 @@
         <i class="fas fa-newspaper"></i>
         <p>News</p>
       </sidebar-link>
-      <sidebar-link to="/media">
+      <sidebar-link to="/medialists">
         <i class="fas fa-image"></i>
         <p>Media</p>
       </sidebar-link>
@@ -18,24 +18,14 @@
         <nuxt />
       </transition>
     </div>
-
   </div>
 </template>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.1s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
-@media screen and (min-width: 992px) {
-  .md-toolbar .md-button:first-child {
-    display: none;
+<script>
+import MobileMenu from '~/layouts/MobileNavbar.vue'
+export default {
+  components: {
+    MobileMenu
   }
 }
-</style>
+</script>

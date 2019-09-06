@@ -1,87 +1,56 @@
 <template>
   <div class="content" id="addnews">
-    <p>Add news :No news related <a href="/">Add ralated news</a></p>
+    <div class="md-layout">
+      <div class="md-layout-item">
+        <p>
+          Add news :No news related
+          <a href="/">Add ralated news</a>
+        </p>
+      </div>
+      <div class="md-layout-item text-right">
+        <md-button>Save Draft</md-button>
+        <md-button>Ready to Sale</md-button>
+      </div>
+    </div>
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
-        <md-card class="md-card-stats">
-          <md-card-header data-background-color="orange">
-            <i class="fa fa-tag"></i>
-          </md-card-header>
-          <md-card-content>
-            <md-field>
-              <label>Title</label>
-              <md-input></md-input>
-            </md-field>
-            <md-field>
-              <label for="category">News Category</label>
-              <!-- <md-select v-model="category" name="category" id="category"> -->
-                <md-option value="fight-club">item1</md-option>
-                <md-option value="godfather">item2</md-option>
-                <md-option value="godfather-ii">item3</md-option>
-              </md-select>
-            </md-field>
-            <md-field>
-              <label>Short Description</label>
-              <md-textarea></md-textarea>
-            </md-field>
-            <md-field>
-              <label>Full Description</label>
-              <md-textarea></md-textarea>
-            </md-field>
-            <md-field>
-              <label>Tags</label>
-              <md-input></md-input>
-            </md-field>
-            <md-field>
-              <label>Genre</label>
-              <md-textarea></md-textarea>
-            </md-field>
-            <md-field>
-              <label>Location</label>
-              <md-input></md-input>
-            </md-field>
-            <md-field>
-              <label>Thumbnall</label>
-              <md-file v-model="single" />
-            </md-field>
-          </md-card-content>
-        </md-card>
+        <detail />
       </div>
-
       <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
-        <md-card class="md-card-stats">
-          <!-- <md-card-header data-background-color="blue">
-            <i class="fa fa-cloud-upload-alt"></i>
-          </md-card-header> -->
+        <sale-condition />
+      </div>
+    </div>
+    <div class="md-layout">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
+        <video-upload />
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
+        <image-upload />
+      </div>
+    </div>
+    <div class="md-layout">
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-60">
+        <article-upload />
+      </div>
+      <div class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-40">
+        <md-card>
           <md-card-content>
-            <p class="text-left">Sale condition</p>
-            <md-checkbox>Limit Sale</md-checkbox>
+            <p class="text-left">Copyright and Additional Info</p>
             <md-field>
-              <label for="category">Select Buyer</label>
-              <md-select v-model="category" name="category" id="category">
-                <md-option value="fight-club">item1</md-option>
-                <md-option value="godfather">item2</md-option>
-                <md-option value="godfather-ii">item3</md-option>
-              </md-select>
-            </md-field>
-            <div>
-              <md-radio v-model="radio" value="accent">Forever</md-radio>
-              <md-radio v-model="radio" value="Primary" class="md-primary">Before 6PM</md-radio>
-              <md-radio v-model="radio" value="Primary" class="md-primary">Before 5PM</md-radio>
-            </div>
-            <md-field>
-              <label for="category">Term of Usage</label>
-              <md-select v-model="category" name="category" id="category">
-                <md-option value="fight-club">item1</md-option>
-                <md-option value="godfather">item2</md-option>
-                <md-option value="godfather-ii">item3</md-option>
-              </md-select>
-            </md-field>
-            <md-field>
-              <label>Price</label>
+              <label>Copyright Holder</label>
               <md-input></md-input>
             </md-field>
-            <md-button>Set to Default</md-button>
+            <md-field>
+              <label>Copyright Notice</label>
+              <md-input></md-input>
+            </md-field>
+            <md-field>
+              <label>Additional Info</label>
+              <md-input></md-input>
+            </md-field>
+            <div class="text-right">
+              <md-button>Set to Default</md-button>
+            </div>
           </md-card-content>
         </md-card>
       </div>
@@ -90,31 +59,51 @@
 </template>
 
 <script>
+import StandardCard from "~/components/Card/StandardCard.vue"
+import Detail from '~/layouts/AddNews/Detail.vue'
+import SaleCondition from '~/layouts/AddNews/SaleCondition.vue'
+import VideoUpload from '~/layouts/AddNews/VideoUpload.vue'
+import ArticleUpload from '~/layouts/AddNews/ArticleUpload.vue'
+import ImageUpload from '~/layouts/AddNews/ImageUpload.vue'
+
 export default {
+  components: {
+    StandardCard,
+    Detail,
+    SaleCondition,
+    VideoUpload,
+    ArticleUpload,
+    ImageUpload
+  },
   props: {
     dataBackgroundColor: {
       type: String,
-      default: ''
+      default: ""
+    }
+  },
+  data() {
+    return {
+      news_title: ""
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+#search {
+  display: none;
+}
+#addnews {
+  .md-button {
+    text-align: center;
+    // background-color: transparent !important;
+    background: linear-gradient(60deg, #26c6da, #00acc1);
+    border-radius: 20px;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    i {
+      color: #ffffff !important;
     }
   }
 }
-</script>
-
-<style lang="scss">
-  #addnews {
-    #upload-file {
-      display: flex;
-      margin-top: 5em;
-      justify-content: space-between;
-      align-content: center;
-      align-items: center;
-    }
-    .md-card-stats .md-card-content {
-      text-align: left;
-    }
-    .md-radio {
-      display: flex;
-    }
-  }
-  
 </style>

@@ -52,6 +52,7 @@
         </md-card-content>
 
         <md-card-actions>
+          <md-button class="md-warning" type="button" to="/changepassword" style="align-self: flex-start; margin-right: auto;">Change Password</md-button>
           <md-button class="md-info" type="submit" value="submit">Update</md-button>
         </md-card-actions>
       </form>
@@ -205,5 +206,9 @@ export default {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.4s, visibility 0.4s;
+}
+
+.md-card .md-card-actions {
+  border: 0px;
 }
 </style>

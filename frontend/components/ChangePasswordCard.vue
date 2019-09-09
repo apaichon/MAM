@@ -157,4 +157,8 @@ export default {
   visibility: visible;
   transition: opacity 0.4s, visibility 0.4s;
 }
+
+.md-card .md-card-actions {
+  border: 0px;
+}
 </style>

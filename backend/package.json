@@ -23,7 +23,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "firebase": "^6.1.0",
-    "firebase-admin": "^8.1.0",
+    "firebase-admin": "^11.4.1",
     "http2": "^3.3.7",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
